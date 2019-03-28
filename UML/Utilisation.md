@@ -25,7 +25,7 @@
   * consulter statistiques de la voie
   * fermer une voie
   
-# 5.Gestion de la salle
+# 5.Gestion de la salle(gérant)
   * modifier le planning des ouvertures
     * ajouter une ouverture
     * annuler une ouverture
@@ -33,3 +33,9 @@
   * organiser événèment
   * notifier les grimpeurs
   
+# 6.Envoyer un message à un grimpeur
+  * accéder à sa liste d'amis
+  * rechercher quelqu'un
+  * consulter son profil
+  * ouvrir la discussion 
+  * lui envoyer un message
