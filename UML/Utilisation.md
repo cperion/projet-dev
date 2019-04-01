@@ -1,6 +1,6 @@
 ## Fonctionalités
 
-# 0.Inscription
+# 0. Inscription
   * installer l'application
   * lancer l'application
   * créer un compte
@@ -8,7 +8,7 @@
     * vérifier unicité login
     * cliquer bouton "Valider"
 
-# 1.Connexion/Déconnexion
+# 1. Connexion/Déconnexion
   * lancer l'application
   * accéder au compte
     * entrer login/password
@@ -17,7 +17,7 @@
   * quitter son profil
     * cliquer bouton "log out"
   
-# 2.Consulter son profil
+# 2. Consulter son profil
   * lancer l'application
   * se connecter
   * cliquer sur l'icône profil
@@ -32,7 +32,7 @@
     * taper une date (jour/mois/année), ou le nom d'une voie, ou le nom d'un évènement, ou bien faire dérouler la liste
     * cliquer sur l'activité (voie grimpée, participation à un évènement)
 
-# 2bis.Consulter les voies grimpées
+# 2bis. Consulter les voies grimpées
   * lancer l'application
   * se connecter
   * cliquer sur le menu "Grimpe"
@@ -42,7 +42,7 @@
     * consulter stats de la voie
     * commenter la voie (éventuellement pour parler de la cotation)
   
-# 3.Poster/Consulter annonces/évènements
+# 3. Poster/Consulter annonces/évènements
   * lancer l'application
   * se connecter
   * cliquer sur l'onglet
@@ -67,7 +67,7 @@
     * cliquer bouton "Valider"
     
  
-# 4.Ouvrir/Fermer une voie(ouvreur)
+# 4. Ouvrir/Fermer une voie(ouvreur)
   * lancer l'application
   * se connecter en tant qu'ouvreur
   * cliquer sur le menu "Grimpe"
@@ -79,7 +79,7 @@
     * Choisir la voie à fermer
     * Cliquer sur fermer la voie
   
-# 5.Gestion de la salle(gérant)
+# 5. Gestion de la salle(gérant)
   * lancer l'application
   * se connecter en tant que gérant
   * cliquer sur l'onglet planning
@@ -96,7 +96,7 @@
     * cliquer sur lancer une alerte
     * choisir le type (ouverture, fermeture, évènement)
   
-# 6.Envoyer un message à un grimpeur/Consulter son profil
+# 6. Envoyer un message à un grimpeur/Consulter son profil
   * lancer l'application
   * se connecter
   * accéder à sa liste d'amis
