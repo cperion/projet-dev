@@ -10,10 +10,14 @@
   * cliquer sur l'icône profil
   * modifier son nom/prénom/âge/genre dans le champ associé
   * mettre à jour son niveau en cliquant sur le menu déroulant dans le champ associé
+    * les niveaux vont de 4a à 9a, toujours avec le pattern *a/*b/*c
   * dans le champ type de grimpe: ajouter des hashtags indiquant son type de grimpe
   * consultation des voies préférées dans l'onglet du profil
   * affichage des statistiques du grimpeur basé sur les résultats du menu "Grimpe"
   * rechercher activités réalisées à une date précise dans la liste déroulante activités de l'onglet profil
+    * cliquer dans la barre "Rechercher" en haut de la liste
+    * taper une date (jour/mois/année), ou le nom d'une voie, ou le nom d'un évènement, ou bien faire dérouler la liste
+    * cliquer sur l'activité (voie grimpé, participation à un évènement)
 
 # 2bis.Consulter les voies grimpées
   * lancer l'application
