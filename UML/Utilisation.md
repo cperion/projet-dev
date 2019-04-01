@@ -23,13 +23,16 @@
   * lancer l'application
   * se connecter
   * cliquer sur le menu "Grimpe"
-  * cliquer sur "Voies"
+  * cliquer sur "Consulter une voie"
   * choisir une voie
     * ajouter dans "voies essayées/réussies/préférées"
     * consulter stats de la voie
     * commenter la voie (éventuellement pour parler de la cotation)
   
 # 3.Poster/Consulter annonces/ouvertures/évènements
+  * lancer l'application
+  * se connecter
+  * cliquer sur l'onglet
   * poster/consulter une annonce de ventes de matériel
   * poster(ouvreur)/modifier(ouvreur)/consulter/donner son avis sur une ouverture
   * consulter/participer à un événèment
@@ -42,9 +45,12 @@
   * se connecter en tant qu'ouvreur
   * cliquer sur le menu "Grimpe"
   * Choisir parmi: "Ouvrir une voie", "Consulter une voie", "Fermer une voie"
-  * indiquer secteur/couleur/difficulté/type
+  * Ouverture:
+    * indiquer secteur/couleur/difficulté/type
   * consulter statistiques de la voie
-  * fermer une voie
+  * Fermeture:
+    * Choisir la voie à fermer
+    * Cliquer sur fermer la voie
   
 # 5.Gestion de la salle(gérant)
   * modifier le planning des ouvertures
