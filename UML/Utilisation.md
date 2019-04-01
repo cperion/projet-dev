@@ -1,8 +1,20 @@
 ## Fonctionalités
 
+# 0.Inscription
+  * cliquer sur le bouton d'inscription
+  * entrer mail, login, password
+  * valider via entrée/bouton de fin de création du compte
+  * envoi d'un mail de confirmation de compte
+  * cliquer sur un lien dans le mail vers le site
+  * l'utilisateur est automatiquement connecté et son compte est vérifié
+
 # 1.Connexion/Déconnexion
-  * entrer login/password
+  * accéder à son profil
+    * cliquer sur le bouton de connexion
+    * entrer login/password
+    * valider via entrée/bouton de connexion
   * quitter son profil
+    * cliquer sur le bouton de log out
  
 # 2.Consulter son profil
   * modifier son nom/prénom/âge/genre
