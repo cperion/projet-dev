@@ -1,8 +1,21 @@
 ## Fonctionalités
 
+# 0.Inscription
+  * installer l'application
+  * lancer l'application
+  * créer un compte
+    * donner login/password
+    * vérifier unicité login
+    * cliquer bouton "Valider"
+
 # 1.Connexion/Déconnexion
-  * entrer login/password
+  * lancer l'application
+  * accéder au compte
+    * entrer login/password
+    * cliquer bouton "Valider"
+    * vérifier match login/password
   * quitter son profil
+    * cliquer bouton "log out"
   
 # 2.Consulter son profil
   * lancer l'application
@@ -17,7 +30,7 @@
   * rechercher activités réalisées à une date précise dans la liste déroulante activités de l'onglet profil
     * cliquer dans la barre "Rechercher" en haut de la liste
     * taper une date (jour/mois/année), ou le nom d'une voie, ou le nom d'un évènement, ou bien faire dérouler la liste
-    * cliquer sur l'activité (voie grimpé, participation à un évènement)
+    * cliquer sur l'activité (voie grimpée, participation à un évènement)
 
 # 2bis.Consulter les voies grimpées
   * lancer l'application
@@ -29,16 +42,30 @@
     * consulter stats de la voie
     * commenter la voie (éventuellement pour parler de la cotation)
   
-# 3.Poster/Consulter annonces/ouvertures/évènements
+# 3.Poster/Consulter annonces/évènements
   * lancer l'application
   * se connecter
   * cliquer sur l'onglet
   * poster/consulter une annonce de ventes de matériel
-  * poster(ouvreur)/modifier(ouvreur)/consulter/donner son avis sur une ouverture
-  * consulter/participer à un événèment
+    * poster annonce
+      * cliquer sur bouton "Ajouter une annonce"
+      * écrire annonce
+      * cliquer bouton "Valider"
+    * consulter annonce
+      * cliquer sur l'annonce
+  * consulter/participer à un événement
+    * cliquer sur l'événement
+      * cliquer bouton "Je participe"
   * consulter participation aux évènements de la salle
+    * cliquer sur l'événement
+    * cliquer sur onglet "Participants"
   * consulter notifications à propos des annonces
+    * cliquer onglet notifications
   * répondre à une annonce/commentaire
+    * cliquer sur bouton "Répondre"
+    * écrire message
+    * cliquer bouton "Valider"
+    
  
 # 4.Ouvrir/Fermer une voie(ouvreur)
   * lancer l'application
