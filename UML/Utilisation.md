@@ -2,7 +2,8 @@
 
 # 0.Inscription
   * cliquer sur le bouton d'inscription
-  * entrer mail, login, password
+  * entrer (mail,) login, password
+  * {vérifier si le login est unique}
   * valider via entrée/bouton de fin de création du compte
   * (envoi d'un mail de confirmation de compte)
   * (cliquer sur un lien dans le mail vers le site)
@@ -25,7 +26,8 @@
   * rechercher activités réalisées à une date précise
   
 # 3.Poster/Consulter annonces/ouvertures/évènements
-  * poster/consulter une annonce de ventes de matériel
+  * poster/consulter une annonce de vente/achat de matériel
+    * 
   * poster(ouvreur)/modifier(ouvreur)/consulter/donner son avis sur une ouverture
   * consulter/participer à un événèment
   * consulter notifications à propos des annonces
