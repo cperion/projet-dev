@@ -4,9 +4,9 @@
   * cliquer sur le bouton d'inscription
   * entrer mail, login, password
   * valider via entrée/bouton de fin de création du compte
-  * envoi d'un mail de confirmation de compte
-  * cliquer sur un lien dans le mail vers le site
-  * l'utilisateur est automatiquement connecté et son compte est vérifié
+  * (envoi d'un mail de confirmation de compte)
+  * (cliquer sur un lien dans le mail vers le site)
+  * (l'utilisateur est automatiquement connecté et son compte est vérifié)
 
 # 1.Connexion/Déconnexion
   * accéder à son profil
