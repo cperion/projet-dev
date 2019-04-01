@@ -53,12 +53,21 @@
     * Cliquer sur fermer la voie
   
 # 5.Gestion de la salle(gérant)
-  * modifier le planning des ouvertures
+  * lancer l'application
+  * se connecter en tant que gérant
+  * cliquer sur l'onglet planning
+  * cliquer sur modifier le planning des ouvertures
     * ajouter une ouverture
     * annuler une ouverture
-  * affecter/désaffecter un ouvreur à une voie
-  * organiser événèment
-  * notifier les grimpeurs
+    * affecter/désaffecter un ouvreur à une voie
+  * organiser événèment:
+    * cliquer sur l'onglet planning
+    * cliquer sur créer un évènement
+    * choisir une date sur le planning
+    * choisir un type (soirée, compétition, projection de films)
+  * notifier les grimpeurs:
+    * cliquer sur lancer une alerte
+    * choisir le type (ouverture, fermeture, évènement)
   
 # 6.Envoyer un message à un grimpeur/Consulter son profil
   * lancer l'application
