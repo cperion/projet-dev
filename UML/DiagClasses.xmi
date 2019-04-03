@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI timestamp="2019-04-03T14:10:49" xmlns:UML="http://schema.omg.org/spec/UML/1.4" xmi.version="1.2" verified="false">
+<XMI timestamp="2019-04-03T14:53:04" xmlns:UML="http://schema.omg.org/spec/UML/1.4" xmi.version="1.2" verified="false">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -272,7 +272,7 @@
        </UML:Classifier.feature>
       </UML:Class>
       <UML:Class isRoot="false" isLeaf="false" isSpecification="false" isAbstract="false" visibility="public" name="date" xmi.id="uv0lo6kx4RuQZ" namespace="Logical_View"/>
-      <UML:Class isRoot="false" isLeaf="false" isSpecification="false" isAbstract="false" visibility="public" name="Activite" xmi.id="uIPQvfFS2c5FU" namespace="Logical_View">
+      <UML:Class isRoot="false" isLeaf="false" isSpecification="false" isAbstract="true" visibility="public" name="Activite" xmi.id="uIPQvfFS2c5FU" namespace="Logical_View">
        <UML:GeneralizableElement.generalization>
         <UML:Generalization xmi.idref="uYLrogyGeZJJN"/>
        </UML:GeneralizableElement.generalization>
@@ -366,7 +366,7 @@
          <classwidget y="-1258.71" usefillcolor="1" usesdiagramusefillcolor="0" showattributes="1" showpubliconly="0" localid="uckUYxoGuxCta" autoresize="0" showattsigs="601" linewidth="0" showscope="1" height="88.679" usesdiagramfillcolor="0" x="-485.768" fillcolor="#ffff00" showopsigs="601" showstereotype="1" showoperations="1" font="Ubuntu,11,-1,5,50,0,0,0,0,0" linecolor="#ff0000" isinstance="0" textcolor="#000000" width="116.546" xmi.id="u74LfaQkKnBXf" showpackage="1"/>
          <classwidget y="-1105.99" usefillcolor="1" usesdiagramusefillcolor="0" showattributes="1" showpubliconly="0" localid="uOahF0TB25Jma" autoresize="0" showattsigs="601" linewidth="0" showscope="1" height="68.6394" usesdiagramfillcolor="0" x="261.584" fillcolor="#ffff00" showopsigs="601" showstereotype="1" showoperations="1" font="Ubuntu,11,-1,5,50,0,0,0,0,0" linecolor="#ff0000" isinstance="0" textcolor="#000000" width="196" xmi.id="uDVL8HZS9QsFc" showpackage="1"/>
          <classwidget y="-1514.82" usefillcolor="1" usesdiagramusefillcolor="0" showattributes="1" showpubliconly="0" localid="ufXB6p66xPPEe" autoresize="1" showattsigs="601" linewidth="0" showscope="1" height="33" usesdiagramfillcolor="0" x="465.025" fillcolor="#ffff00" showopsigs="601" showstereotype="1" showoperations="1" font="Ubuntu,11,-1,5,50,0,0,0,0,0" linecolor="#ff0000" isinstance="0" textcolor="#000000" width="71" xmi.id="uFIeaRMoX14zh" showpackage="1"/>
-         <classwidget y="-1475.14" usefillcolor="1" usesdiagramusefillcolor="0" showattributes="1" showpubliconly="0" localid="uq4zQ7XYR4ejX" autoresize="1" showattsigs="601" linewidth="0" showscope="1" height="42" usesdiagramfillcolor="0" x="-515.705" fillcolor="#ffff00" showopsigs="601" showstereotype="1" showoperations="1" font="Ubuntu,11,-1,5,50,0,0,0,0,0" linecolor="#ff0000" isinstance="0" textcolor="#000000" width="101" xmi.id="uIPQvfFS2c5FU" showpackage="1"/>
+         <classwidget y="-1475.14" usefillcolor="1" usesdiagramusefillcolor="0" showattributes="1" showpubliconly="0" localid="uq4zQ7XYR4ejX" autoresize="1" showattsigs="601" linewidth="0" showscope="1" height="42" usesdiagramfillcolor="0" x="-515.705" fillcolor="#ffff00" drawascircle="0" showopsigs="601" showstereotype="1" showoperations="1" font="Ubuntu,11,-1,5,50,0,0,0,0,0" linecolor="#ff0000" isinstance="0" textcolor="#000000" width="101" xmi.id="uIPQvfFS2c5FU" showpackage="1"/>
          <classwidget y="-798.354" usefillcolor="1" usesdiagramusefillcolor="0" showattributes="1" showpubliconly="0" localid="ujonagzY8VwL9" autoresize="1" showattsigs="601" linewidth="0" showscope="1" height="42" usesdiagramfillcolor="0" x="-403.001" fillcolor="#ffff00" showopsigs="601" showstereotype="1" showoperations="1" font="Ubuntu,11,-1,5,50,0,0,0,0,0" linecolor="#ff0000" isinstance="0" textcolor="#000000" width="100" xmi.id="uBKqQKjq9l0QW" showpackage="1"/>
         </widgets>
         <messages/>
