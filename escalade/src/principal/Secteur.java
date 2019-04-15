@@ -1,6 +1,8 @@
 package principal;
 
+import java.util.List;
+
 public class Secteur {
     private String nom;
-    private Set<Voie> voies;
+    private List<Voie> voies; // Chaque secteur contient une liste de voies
 }
