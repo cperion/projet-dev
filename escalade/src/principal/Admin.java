@@ -1,6 +1,6 @@
 package principal;
 
-public interface Admin  {
+public interface Admin  { // on utilise une interface juste parcequ'on peut
     /**Do admin stuff*/
     public void fermerVoie();
     public void ouvrirVoie();
