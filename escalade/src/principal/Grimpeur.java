@@ -14,6 +14,10 @@ public class Grimpeur {
     private List<Activite> hist;
     private Inbox inbox;
 
+    public Grimpeur() {
+        
+    }
+
     public Grimpeur(int id, String pseudo, int age)  {
         this.id = id;
         this.pseudo = pseudo;
