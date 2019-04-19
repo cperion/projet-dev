@@ -5,21 +5,25 @@ public class Grimpe extends Activite {
     private Grimpeur grimpeur;
     private Voie voie;
     private String date;
+    private boolean reussie;
 
     
-    public Grimpe(Grimpeur grimpeur,Voie voie,String date) {
+    public Grimpe(Grimpeur grimpeur,Voie voie,String date, boolean reussie) {
         this.grimpeur=grimpeur;
         this.voie=voie;
         this.date=date;
+        this.reussie=reussie;
     }
 
     /**
      * @return the date
      */
+ 
     public String getDate() {
         return date;
     }
     /**
+     *      
      * @return the voie
      */
     public Voie getVoie() {
@@ -36,6 +40,14 @@ public class Grimpe extends Activite {
      */
     public void setVoie(Voie voie) {
         this.voie = voie;
+    }
+    @Override
+    public String toString() {
+        String out="";
+        out += "grimpeur: " + grimpeur.getPseudo() + "\n";
+        out += "voie: " + voie.getNom() + "\n";
+        out += "date: " + date + "\n";
+        return out;
     }
 
 }
