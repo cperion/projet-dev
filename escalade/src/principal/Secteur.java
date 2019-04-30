@@ -9,7 +9,7 @@ public class Secteur {
     private List<Voie> voies; // Chaque secteur contient une liste de voies, oui c'est redondant on sait
 
     public Secteur(String nom)  {
-        this.nom =nom;
+        this.nom=nom;
         this.voies = new ArrayList<Voie>();
     }
 }
