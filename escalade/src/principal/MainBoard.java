@@ -1,8 +1,13 @@
 package principal;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 
-public class MainBoard { // Le MainBoard est represente la physiqualite de la salle de sport
+public class MainBoard implements Serializable{ // Le MainBoard est represente la physiqualite de la salle de sport
     static private List<Activite> activites;
     static private List<Voie> voies;
     static private List<Grimpeur> grimpeurs; // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
@@ -49,5 +54,15 @@ public class MainBoard { // Le MainBoard est represente la physiqualite de la sa
     }
     static public void delVoie(int id) {
         voies.remove(id);
+    }
+
+    public void save(String fname) { // Sauvegarde la salle dans un fichier
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fname));
+            os.writeObject(this);
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

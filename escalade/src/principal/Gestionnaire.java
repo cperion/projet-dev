@@ -1,8 +1,6 @@
 package principal;
 
-import java.util.List;
-
-public class Gestionnaire {
+public class Gestionnaire extends Grimpeur{
     public void fermerVoie(Voie voie) {
         voie.setOuvert(false);
     }
