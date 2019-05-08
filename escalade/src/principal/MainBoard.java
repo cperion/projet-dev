@@ -7,59 +7,64 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MainBoard implements Serializable{ // Le MainBoard est represente la physiqualite de la salle de sport
-    static private List<Activite> activites;
-    static private List<Voie> voies;
-    static private List<Grimpeur> grimpeurs; // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
-    static private List<Secteur> secteurs; // Redondant mais pratique
-    static private List<byte[]> hashlist;
+    private List<Activite> activites;
+    private List<Voie> voies;
+    private List<Grimpeur> grimpeurs; // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
+    private List<Secteur> secteurs; // Redondant mais pratique
+    private List<byte[]> hashlist;
     /**
      * @return the voies
      */
-    static public List<Voie> getVoies() {
+    public List<Voie> getVoies() {
         return voies;
     }
     /**
      * @param voies the voies to set
      */
-    static public void setVoies(List<Voie> lvoies) {
+    public void setVoies(List<Voie> lvoies) {
         voies = lvoies;
     }
     /**
      * @return the grimpeurs
      */
-    static public List<Grimpeur> getGrimpeurs() {
+    public List<Grimpeur> getGrimpeurs() {
         return grimpeurs;
     }
     /**
      * @param grimpeurs the grimpeurs to set
      */
-    static public void setGrimpeurs(List<Grimpeur> grimpeurs) {
-        MainBoard.grimpeurs = grimpeurs;
+    public void setGrimpeurs(List<Grimpeur> grimpeurs) {
+        this.grimpeurs = grimpeurs;
     }
-    static public void addGrimpeur(Grimpeur g)  {
+    public void addGrimpeur(Grimpeur g)  {
         grimpeurs.add(g);
     }
-    static public void delGrimpeur(int id) {
+    public void delGrimpeur(int id) {
         grimpeurs.remove(id);
     }
 
-    static public void addSecteur(Secteur s) {
+    public void addSecteur(Secteur s) {
         secteurs.add(s);
     }
-    static public void delSecteur(int id) {
+    public void delSecteur(int id) {
         secteurs.remove(id);
     }
-    static public void addVoie(Voie v)  {
+    public void addVoie(Voie v)  {
         voies.add(v);
     }
-    static public void delVoie(int id) {
+    public void delVoie(int id) {
         voies.remove(id);
+    }
+    public void addAnonce(String date, String msg, int id) {
+        Grimpeur auteur = grimpeurs.get(id);
+        Annonce a = new Annonce(date, auteur, msg);
+        activites.add(a);
     }
 
     /**
      * @return the hashlist
      */
-    public static List<byte[]> getHashlist() {
+    public List<byte[]> getHashlist() {
         return hashlist;
     }
 

@@ -17,8 +17,20 @@ import principal.MainBoard;
 
 public class Mainloop {
 
-	public static void startconsole(MainBoard mb, int id) {}
-	public static  void startadminconsole(MainBoard mb) {}
+	String help = "";
+
+	public static void startconsole(MainBoard mb, int id) {
+		System.out.println("Bienvenue dans la console. Tapez help pour avoir la liste des commandes disponibles");
+		Scanner scan = new Scanner(System.in);
+		boolean exit=false;
+		while (!exit) {
+			System.out.println(mb.getGrimpeurs().get(id).toString()+ " : ");
+
+		}
+	}
+	public static  void startadminconsole(MainBoard mb) {
+		
+	}
 
 	public static void start(MainBoard mb, int id) {
 		if (id == 0) {
@@ -49,7 +61,6 @@ public class Mainloop {
 			go = s=="Y" || s=="y" ;
 		} while (mb.getHashlist().get(id) != hash || !go );
 		start(mb, id);
-
 		
 	}
 	public static void mbload(String fname) {
@@ -68,6 +79,9 @@ public class Mainloop {
 		String fname = new String();
 		fname = scan.next();
 		scan.close();
+		if (!fname.endsWith(".mb")) {
+			fname += ".mb";
+		}
 		mbload(fname);
 	}
 	public static void main(String[] args) {
@@ -93,6 +107,7 @@ public class Mainloop {
 					e.printStackTrace();
 			}
 		}
+		mbselect();
 	
 
 	}

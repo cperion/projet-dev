@@ -7,29 +7,29 @@ public class Gestionnaire extends Grimpeur{
     public void ouvrirVoie(Voie voie) {
         voie.setOuvert(true);
     }
-    public void addGrimpeur(String pseudo, int age) {
+    public void addGrimpeur(String pseudo, int age, MainBoard mb) {
         int id;
-        id=MainBoard.getGrimpeurs().size(); // A chaque grimpeur on associe un id qui correspond à sa place dans la liste des grimpeurs
+        id=mb.getGrimpeurs().size(); // A chaque grimpeur on associe un id qui correspond à sa place dans la liste des grimpeurs
         Grimpeur g = new Grimpeur(id, pseudo, age);
-        MainBoard.addGrimpeur(g);
+        mb.addGrimpeur(g);
     }
-    public void delGrimpeur(int id) {
-        MainBoard.delGrimpeur(id);
+    public void delGrimpeur(int id, MainBoard mb) {
+        mb.delGrimpeur(id);
     }
-    public void addSecteur(String nom) {
+    public void addSecteur(String nom, MainBoard mb) {
         Secteur s = new Secteur(nom);
-        MainBoard.addSecteur(s);
+        mb.addSecteur(s);
     }
-    public void delSecteur(int id) {
-        MainBoard.delSecteur(id);
+    public void delSecteur(int id, MainBoard mb) {
+        mb.delSecteur(id);
     }
-    public void addVoie(String nom) {
+    public void addVoie(String nom, MainBoard mb) {
         int id;
-        id = MainBoard.getVoies().size();
+        id = mb.getVoies().size();
         Voie v = new Voie(id, nom);
-        MainBoard.addVoie(v);
+        mb.addVoie(v);
     }
-    public void delVoie(int id) {
-        MainBoard.delVoie(id);
+    public void delVoie(int id, MainBoard mb) {
+        mb.delVoie(id);
     }
 }
