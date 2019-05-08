@@ -1,6 +1,5 @@
 package principal;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -12,6 +11,7 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
     static private List<Voie> voies;
     static private List<Grimpeur> grimpeurs; // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
     static private List<Secteur> secteurs; // Redondant mais pratique
+    static private List<byte[]> hashlist;
     /**
      * @return the voies
      */
@@ -56,8 +56,19 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
         voies.remove(id);
     }
 
+    /**
+     * @return the hashlist
+     */
+    public static List<byte[]> getHashlist() {
+        return hashlist;
+    }
+
     public void save(String fname) { // Sauvegarde la salle dans un fichier
         try {
+            if (!fname.endsWith(".mb")) {
+                fname += ".mb";
+            }
+            fname= "./saved/" + fname;
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fname));
             os.writeObject(this);
             os.close();

@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Mainloop",
+            "request": "launch",
+            "mainClass": "ui.cli.Mainloop",
+            "projectName": "projet-dev"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Mainn",
+            "request": "launch",
+            "mainClass": "ui.cli.Mainn",
+            "projectName": "projet-dev"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "ui.cli.Main",
+            "projectName": "projet-dev"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"

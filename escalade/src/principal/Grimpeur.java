@@ -2,7 +2,6 @@ package principal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Grimpeur {
     private int id;
@@ -13,6 +12,7 @@ public class Grimpeur {
     private Niveau niveau;
     private List<Activite> hist;
     private Inbox inbox;
+    private List<Grimpeur> amis;
 
     public Grimpeur() {
         
@@ -27,6 +27,7 @@ public class Grimpeur {
         this.niveau= Niveau.base;
         this.hist= new ArrayList<Activite>();
         this.inbox= new Inbox();
+        this.amis= new ArrayList<Grimpeur>();
     }
 
     public void addEssayee(Voie voie, String date, boolean reussie)  {
@@ -55,6 +56,20 @@ public class Grimpeur {
      */
     public List<Activite> getHist() {
         return hist;
+    }
+
+    /**
+     * @return the amis
+     */
+    public List<Grimpeur> getAmis() {
+        return amis;
+    }
+
+    /**
+     * @param amis the amis to set
+     */
+    public void setAmis(List<Grimpeur> amis) {
+        this.amis = amis;
     }
 
     @Override
