@@ -30,13 +30,13 @@ public class Grimpeur {
         this.amis= new ArrayList<Grimpeur>();
     }
 
-    public void addEssayee(Voie voie, String date, boolean reussie)  {
+    public void addEssayee(Voie voie, String date, boolean reussie, MainBoard mb)  {
         Grimpe g = new Grimpe(this, voie, date, reussie);
         hist.add(g); // On ajoute la grimpe à l'historique
         voie.addGrimpe(g); // On modifie la voie en lui ajoutant la grimpe à son historique
-        List<Voie> voies = MainBoard.getVoies(); // On extrait la liste des voies
+        List<Voie> voies = mb.getVoies(); // On extrait la liste des voies
         voies.set(voie.getId(), voie);// on remplace la voie originale par la voie modifiee
-        MainBoard.setVoies(voies); // Et on remplace la liste des voies originale par la liste modifiee
+        mb.setVoies(voies); // Et on remplace la liste des voies originale par la liste modifiee
     }
     public void addPreferee(Voie voie) { // Ajoute un voie preferee
         if (!preferees.contains(voie)) { // Il faut au prealable verfier si la voie n'est pas deja dans la liste des preferees

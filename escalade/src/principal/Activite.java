@@ -1,7 +1,7 @@
 package principal;
 
 public abstract class Activite {
-    private String date;
+    protected String date;
     private String msg;
     @Override
     public String toString() {
