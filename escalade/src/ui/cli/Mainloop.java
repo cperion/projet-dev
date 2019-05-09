@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import io.Io;
 import principal.Grimpeur;
 import principal.MainBoard;
 
@@ -45,11 +46,13 @@ public class Mainloop {
 
 	public static void login(MainBoard mb) {
 		byte[] hash = "".getBytes();
-		int id;
+		int id=0;
 		boolean go = false;
 		do {
 			System.out.println("Entrez votre id");
 			Scanner scan = new Scanner(System.in);
+			scan.reset();
+			System.out.println(scan.hasNext());
 			id = scan.nextInt();
 			//scan.close();
 			//Scanner scan = new Scanner(System.in);
@@ -70,7 +73,8 @@ public class Mainloop {
 		try { 
 			FileInputStream fis = new FileInputStream(fname);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			MainBoard mb = (MainBoard) ois.readObject();
+			Object mbo = (MainBoard) ois.readObject();
+			MainBoard mb = (MainBoard) mbo;
 			login(mb);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,15 +102,16 @@ public class Mainloop {
 		Grimpeur g = new Grimpeur(0, pseudo, age);
 		mb.addGrimpeur(g);
 		System.out.println("Entrez le nom de la sauvegarde");
+		scan.reset();
 		String fname = scan.nextLine();
-		mb.save(fname);
+		Io.saveMainBoard(fname, mb);
 	}
 	public static void main(String[] args) {
 		
-		File saveFolder = new File("./saved");
+		File saveFolder = new File(".");
 		if (saveFolder.exists()) {// On verifie si un dossier de sauvegarde "saved" existe
 			System.out.println("Bonjour, voici une liste des salles enregistrees :");
-			try (Stream<Path> walk = Files.walk(Paths.get("./saved"))) {
+			try (Stream<Path> walk = Files.walk(Paths.get("."))) {
 			List<String> result = walk.map(x -> x.toString())
 					.filter(f -> f.endsWith(".mb")).collect(Collectors.toList());
 			result.forEach(System.out::println);
@@ -115,15 +120,7 @@ public class Mainloop {
 			}
 			
 		}
-		else {// Si il n'existe pas on essaie de le créer
-			System.out.println("Création du dossier de sauvegarde");
-			try { File dir = new File("saved");
-				dir.mkdir();
-			} catch (Exception e) {
-					System.out.println("Une erreur s'est produite !");
-					e.printStackTrace();
-			}
-		}
+		
 		if (saveFolder.list().length == 0) {
 			createmb();
 		}

@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainBoard implements Serializable{ // Le MainBoard est represente la physiqualite de la salle de sport
@@ -14,7 +15,7 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
     private List<byte[]> hashlist;
 
     public MainBoard() {
-        grimpeurs=
+        grimpeurs= new ArrayList<Grimpeur>();
     }
     /**
      * @return the voies
@@ -78,19 +79,7 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
         return activites;
     }
 
-    public void save(String fname) { // Sauvegarde la salle dans un fichier
-        try {
-            if (!fname.endsWith(".mb")) {
-                fname += ".mb";
-            }
-            fname= "./saved/" + fname;
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fname));
-            os.writeObject(this);
-            os.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    
 	public void setGrimpeur(int id, Grimpeur g) {
         grimpeurs.set(id, g);
 	}
