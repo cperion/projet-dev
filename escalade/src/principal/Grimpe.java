@@ -45,6 +45,10 @@ public class Grimpe extends Activite {
     public boolean getReussite(){
         return this.reussie;
     }
+
+    public Grimpeur getGrimpeur(){
+        return this.grimpeur;
+    }
     @Override
     public String toString() {
         String out="";

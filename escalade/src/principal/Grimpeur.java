@@ -16,13 +16,13 @@ public class Grimpeur {
     private Inbox inbox;
     private List<Grimpeur> amis;
 
-    public Grimpeur(int id, String pseudo, int age)  {
+    public Grimpeur(int id, String pseudo, int age,int niveau)  {
         this.id = id;
         this.pseudo = pseudo;
         this.age = age;
+        this.niveau = niveau;
         this.preferees= new ArrayList<Voie>();
         this.chaussons= new ArrayList<String>();
-        this.niveau = Niveau.base;
         this.hist= new ArrayList<Activite>();
         this.inbox= new Inbox();
         this.amis= new ArrayList<Grimpeur>();
@@ -84,7 +84,7 @@ public class Grimpeur {
         return this.niveau;
     }
 
-    public void setNiveau(Niveau niveau){
+    public void setNiveau(int niveau){
         this.niveau = niveau;
     }
 
@@ -121,12 +121,16 @@ public class Grimpeur {
         return k;
     }
 
-    public Grimpe derniereGrimpe(){
+    public int nbEssais(){
+        return nbSucces() + nbEchecs();
+    }
+
+    public Voie derniereGrimpe(){
         Collections.reverse(hist);
         for (Activite e:hist){
             if (e instanceof Grimpe){
                 Grimpe g = (Grimpe) (e);
-                return g;
+                return g.getVoie();
             }
         }
         System.out.println("Vous ne grimpez jamais !");
