@@ -5,7 +5,7 @@ import java.util.List;
 public class Voie {
     private int id; //Identifiant unique qui permet de retrouver la voie dans la liste de voies du MainBoard
     private String nom;
-    private Difficulte difficulte;
+    private int difficulte;
     private List<Grimpe> hist;
     private Horaire horaire;
     private String type;
@@ -48,5 +48,8 @@ public class Voie {
     public void setOuvert(boolean ouvert) {
         this.ouvert = ouvert;
     }
-    
+
+    public int getDifficulte(){
+        return this.difficulte;
+    }
 }
