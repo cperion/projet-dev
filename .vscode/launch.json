@@ -13,9 +13,9 @@
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Mainn",
+            "name": "CodeLens (Launch) - Main",
             "request": "launch",
-            "mainClass": "ui.cli.Mainn",
+            "mainClass": "ui.cli.Main",
             "projectName": "projet-dev"
         },
         {
