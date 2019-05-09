@@ -66,7 +66,7 @@ public class Mainloop {
 		
 	}
 	public static void mbload(String fname) {
-		try  { 
+		try { 
 			FileInputStream fis = new FileInputStream(fname);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			MainBoard mb = (MainBoard) ois.readObject();
