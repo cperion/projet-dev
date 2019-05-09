@@ -25,7 +25,9 @@ public class Mainloop {
 		boolean exit=false;
 		while (!exit) {
 			System.out.println(mb.getGrimpeurs().get(id).toString()+ " : ");
-
+			String line= scan.nextLine();
+			Command command = new Command(line);
+			command.exec(mb, id);
 		}
 	}
 	public static  void startadminconsole(MainBoard mb) {
