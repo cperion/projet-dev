@@ -7,10 +7,10 @@ public class Gestionnaire extends Grimpeur{
     public void ouvrirVoie(Voie voie) {
         voie.setOuvert(true);
     }
-    public void addGrimpeur(String pseudo, int age, MainBoard mb) {
+    public void addGrimpeur(String pseudo, int age, int niveau, MainBoard mb) {
         int id;
         id=mb.getGrimpeurs().size(); // A chaque grimpeur on associe un id qui correspond à sa place dans la liste des grimpeurs
-        Grimpeur g = new Grimpeur(id, pseudo, age);
+        Grimpeur g = new Grimpeur(id, pseudo, age, niveau);
         mb.addGrimpeur(g);
     }
     public void delGrimpeur(int id, MainBoard mb) {
@@ -23,10 +23,10 @@ public class Gestionnaire extends Grimpeur{
     public void delSecteur(int id, MainBoard mb) {
         mb.delSecteur(id);
     }
-    public void addVoie(String nom, MainBoard mb) {
+    public void addVoie(String nom, int niveau, MainBoard mb) {
         int id;
         id = mb.getVoies().size();
-        Voie v = new Voie(id, nom);
+        Voie v = new Voie(id, nom, niveau);
         mb.addVoie(v);
     }
     public void delVoie(int id, MainBoard mb) {

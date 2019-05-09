@@ -41,6 +41,14 @@ public class Grimpe extends Activite {
     public void setVoie(Voie voie) {
         this.voie = voie;
     }
+
+    public boolean getReussite(){
+        return this.reussie;
+    }
+
+    public Grimpeur getGrimpeur(){
+        return this.grimpeur;
+    }
     @Override
     public String toString() {
         String out="";
