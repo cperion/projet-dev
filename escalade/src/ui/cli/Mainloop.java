@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import principal.Grimpeur;
 import principal.MainBoard;
 
 public class Mainloop {
@@ -86,6 +87,20 @@ public class Mainloop {
 		}
 		mbload(fname);
 	}
+
+	public static void createmb() {
+		MainBoard mb = new MainBoard();
+		System.out.println("Entrez le pseudo admin");
+		Scanner scan = new Scanner(System.in);
+		String pseudo = scan.nextLine();
+		System.out.println("Entrez votre age :");
+		int age = scan.nextInt();
+		Grimpeur g = new Grimpeur(0, pseudo, age);
+		mb.addGrimpeur(g);
+		System.out.println("Entrez le nom de la sauvegarde");
+		String fname = scan.nextLine();
+		mb.save(fname);
+	}
 	public static void main(String[] args) {
 		
 		File saveFolder = new File("./saved");
@@ -108,6 +123,9 @@ public class Mainloop {
 					System.out.println("Une erreur s'est produite !");
 					e.printStackTrace();
 			}
+		}
+		if (saveFolder.list().length == 0) {
+			createmb();
 		}
 		mbselect();
 	

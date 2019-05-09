@@ -12,6 +12,10 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
     private List<Grimpeur> grimpeurs; // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
     private List<Secteur> secteurs; // Redondant mais pratique
     private List<byte[]> hashlist;
+
+    public MainBoard() {
+        grimpeurs=
+    }
     /**
      * @return the voies
      */
