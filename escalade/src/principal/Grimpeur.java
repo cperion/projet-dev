@@ -51,9 +51,9 @@ public class Grimpeur {
         inbox.addMessage(m);
     }
     public void toggleAmi(Grimpeur g) {
-        if (amis.contains(g)) {
-            
-        }
+        if (!amis.contains(g)) {
+            amis.add(g);
+        } else { amis.remove(g); }
     }
     /**
      * @return the pseudo
