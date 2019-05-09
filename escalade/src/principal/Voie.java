@@ -11,12 +11,22 @@ public class Voie {
     private String type;
     private boolean ouvert;
     private Secteur secteur;
+    private int eval; // Compteur de difficulte
+    private List<String> coms;
 
     public Voie(int id, String nom) {
         this.id = id;
         this.nom= nom;
     }
-
+    public void up(){ eval++; } // incremente le compteur de difficulte
+    public void down(){eval--;} // decremente le compeur de difficulte
+    public void addCom(String com, String pseudo) {
+        String out="";
+        out +="----------" + "\n";
+        out +="Auteur : " + nom + "\n";
+        out += com + "\n";
+        coms.add(out);
+    }
     public void addGrimpe(Grimpe g) {
         hist.add(g);
     }

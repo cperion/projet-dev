@@ -4,7 +4,13 @@ public class Message {
     private String msg;
     private Grimpeur destinataire;
     private Grimpeur envoyeur;
-    private boolean lu;
+    private boolean lu; //inutile pour le moment
+
+    public Message(Grimpeur envoyeur, Grimpeur destinataire, String msg) {
+        this.msg=msg;
+        this.destinataire=destinataire;
+        this.envoyeur=envoyeur;
+    }
     /**
      * @return the destinataire
      */

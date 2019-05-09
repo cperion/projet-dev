@@ -4,7 +4,9 @@ import java.util.List;
 
 public class Inbox {
     List<Message> messages;
-
+    public void addMessage(Message m) {
+        messages.add(m);
+    }
     @Override
     public String toString() {
         String out = "";

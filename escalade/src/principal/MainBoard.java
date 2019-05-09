@@ -55,17 +55,23 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
     public void delVoie(int id) {
         voies.remove(id);
     }
-    public void addAnonce(String date, String msg, int id) {
-        Grimpeur auteur = grimpeurs.get(id);
-        Annonce a = new Annonce(date, auteur, msg);
+    public void addAnonce(Annonce a) {
         activites.add(a);
     }
-
+    public void addEvenement(Evenement e) {
+        activites.add(e);
+    }
     /**
      * @return the hashlist
      */
     public List<byte[]> getHashlist() {
         return hashlist;
+    }
+    /**
+     * @return the activites
+     */
+    public List<Activite> getActivites() {
+        return activites;
     }
 
     public void save(String fname) { // Sauvegarde la salle dans un fichier
@@ -81,4 +87,7 @@ public class MainBoard implements Serializable{ // Le MainBoard est represente l
             e.printStackTrace();
         }
     }
+	public void setGrimpeur(int id, Grimpeur g) {
+        grimpeurs.set(id, g);
+	}
 }

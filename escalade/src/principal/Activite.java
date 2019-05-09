@@ -2,7 +2,7 @@ package principal;
 
 public abstract class Activite {
     protected String date;
-    private String msg;
+    protected String msg;
     @Override
     public String toString() {
         String out="";
