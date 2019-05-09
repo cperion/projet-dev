@@ -62,17 +62,23 @@ public class Command {
                 if (params.size() == 1) {
                     int idVoie = Util.idfromnom(mb, params.get(0));
                     System.out.println(mb.getVoies().get(idVoie).toString());
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
             }
             case "profil": {
                 if (params.size() == 1) {
                     int idGrimpeur = Util.idfrompseudo(mb, params.get(0));
                     System.out.println(mb.getGrimpeurs().get(idGrimpeur).toString());
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
             }
             case "evenements": {
                 if (params.size() == 1) {
                     Fonctions.evenements(mb);   
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
             }
             case "essayee": {
@@ -83,6 +89,8 @@ public class Command {
                     if (params.get(2) == "Y") { reussie = true; }
                     int eval = Integer.parseInt(params.get(3));
                     
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
             }
             case "preferee": {
@@ -92,7 +100,9 @@ public class Command {
                     Grimpeur g = mb.getGrimpeurs().get(id);   
                     g.addPreferee(voie);
                     mb.setGrimpeur(id, g);
-                    }
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
+                }
             }
             case "evenement": {
                 if (params.size()==4) {
@@ -103,6 +113,8 @@ public class Command {
                     Evenement e = new Evenement(date, duree, lieu, message);
                     mb.addEvenement(e);
                     //en travaux
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
             }
             case "msg": {
@@ -117,6 +129,8 @@ public class Command {
                     } else {
                         System.out.println("Il y a une erreur sur le destinataire");
                     }
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
                 
             }
@@ -127,6 +141,8 @@ public class Command {
                     Grimpeur g = mb.getGrimpeurs().get(id);
                     ami.toggleAmi(g);
                     g.toggleAmi(ami);
+                } else {
+                    System.out.println("Mauvais nombre de parametres")
                 }
             }
         }
