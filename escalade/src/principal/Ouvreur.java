@@ -11,8 +11,8 @@ public class Ouvreur extends Grimpeur {
         super(niveau, pseudo, niveau, niveau);
     }
 
-    public void ouvre(int id, String nom, int niveau, MainBoard mb){
-        Voie nouvelleVoie = new Voie(id,nom,niveau);
+    public void ouvre(int id, String nom, String secteur, int niveau, MainBoard mb){
+        Voie nouvelleVoie = new Voie(id,nom, secteur, niveau);
         mb.addVoie(nouvelleVoie);
     }
 

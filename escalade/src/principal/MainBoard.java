@@ -14,7 +14,7 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
     private List<Activite> activites = new ArrayList<Activite>();
     private List<Voie> voies = new ArrayList<Voie>();
     private List<Grimpeur> grimpeurs = new ArrayList<Grimpeur>(); // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
-    private List<Secteur> secteurs = new ArrayList<Secteur>(); // Redondant mais pratique
+    //private List<Secteur> secteurs = new ArrayList<Secteur>(); // Redondant mais pratique
     private List<byte[]> hashlist = new ArrayList<byte[]>(); // stock les digest SHA 256 des mots de passe des utilisateurs
     public String hi = "hi"; // Variable bien élevée.
 
@@ -66,12 +66,7 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
         grimpeurs.remove(id);
     }
 
-    public void addSecteur(Secteur s) {
-        secteurs.add(s);
-    }
-    public void delSecteur(int id) {
-        secteurs.remove(id);
-    }
+    
     public void addVoie(Voie v)  {
         voies.add(v);
     }

@@ -5,9 +5,12 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import principal.Activite;
 import principal.Annonce;
 import principal.Evenement;
+import principal.Gestionnaire;
 import principal.Grimpeur;
 import principal.MainBoard;
 import principal.Message;
@@ -29,6 +32,7 @@ public class Command {
         }
     }
     public int exec(MainBoard mb, int id) {
+        //Gestionnaire admin = (Gestionnaire) mb.getGrimpeurs().get(0); //On instencie un administrateur pour plus tard
         int out = 0;
         switch (command) {
             case "help":{
@@ -95,6 +99,16 @@ public class Command {
                 }
                 break;
             }
+            case "voies": {
+                if (params.size()==0) {
+                    List<Voie> voies = mb.getVoies();
+                    for (Voie v : voies) {
+                        System.out.println("----------");
+                        System.out.println(v.toString());
+                    }
+                }
+                break;
+            }
             case "profil": {
                 if (params.size() == 1) {
                     try {
@@ -106,6 +120,9 @@ public class Command {
                         e.printStackTrace();
                     }
                     
+                } else if(params.size() == 0) {
+                    System.out.println("----------");
+                    System.out.println(mb.getGrimpeurs().get(id).toString());
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
@@ -113,33 +130,74 @@ public class Command {
             }
             case "evenements": {
                 if (params.size() == 0) {
-                    Fonctions.evenements(mb);   
+                    List<Activite> activites = mb.getActivites();
+                    String str = new String();
+                    for (Activite a : activites) {
+                        if (a instanceof Evenement) {
+                            str += "---------------" + "\n";
+                            str += a.toString();
+                        }
+                    }
+                    System.out.println(str);
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
                 break;
             }
             case "essayee": {
-                if (params.size() == 4) {
-                    int idVoie = Util.idfromnom(mb, params.get(0));
-                    String date = params.get(1);
-                    boolean reussie = false;
-                    if (params.get(2) == "Y") { reussie = true; }
-                    int eval = Integer.parseInt(params.get(3));
-                    
+                if (params.size() == 5) {
+                    try {
+                        int idVoie = Util.idfromnom(mb, params.get(0));
+                        String date = params.get(1);
+                        boolean reussie = false;
+                        if (params.get(2) == "Y") { reussie = true; }
+                        int eval = Integer.parseInt(params.get(3));
+                        String com = params.get(4);
+                        Grimpeur g = mb.getGrimpeurs().get(id);
+                        Voie voie = mb.getVoies().get(idVoie);
+                        g.addEssayee(mb, voie, date, reussie, eval, com);
+                        mb.setGrimpeur(id, g);
+                        System.out.println("----------");
+                        System.out.println("Grimpe enregistree avec succes");
+                    } catch (Error e) {
+                        e.printStackTrace();
+                    }
                 } else {
+                    System.out.println("----------");
                     System.out.println("Mauvais nombre de parametres");
                 }
                 break;
             }
+
             case "preferee": {
                 if (params.size()==1) { 
-                    int idVoie = Util.idfromnom(mb, params.get(0));
-                    Voie voie = mb.getVoies().get(idVoie);
-                    Grimpeur g = mb.getGrimpeurs().get(id);   
-                    g.addPreferee(voie);
-                    mb.setGrimpeur(id, g);
+                    try {
+                        int idVoie = Util.idfromnom(mb, params.get(0));
+                        Voie voie = mb.getVoies().get(idVoie);
+                        Grimpeur g = mb.getGrimpeurs().get(id);   
+                        g.addPreferee(voie);
+                        mb.setGrimpeur(id, g);
+                        System.out.println("----------");
+                        System.out.println("Voie preferee ajoutee avec succes");
+                    } catch (Error e) {
+                        e.printStackTrace();
+                    }
                 } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                }
+                break;
+            }
+            case "preferees": {
+                if (params.size()==0) {
+                    Grimpeur g = mb.getGrimpeurs().get(id);
+                    List<Voie> preferees = g.getPreferees();
+                    for ( Voie v : preferees) {
+                        System.out.println("----------");
+                        System.out.println(v.toString());
+                    }
+                } else {
+                    System.out.println("----------");
                     System.out.println("Mauvais nombre de parametres");
                 }
                 break;
@@ -152,25 +210,29 @@ public class Command {
                     String message = params.get(3);
                     Evenement e = new Evenement(date, duree, lieu, message);
                     mb.addEvenement(e);
-                    //en travaux
+                    System.out.println("----------");
+                    System.out.println("Evenement ajoute au MainBard avec succes");
                 } else {
+                    System.out.println("----------");
                     System.out.println("Mauvais nombre de parametres");
                 }
                 break;
             }
             case "msg": {
-                if (params.size()==1){
-                    int idDest = Util.idfrompseudo(mb, params.get(0));
-                    Grimpeur dest = mb.getGrimpeurs().get(idDest);
-                    Grimpeur env = mb.getGrimpeurs().get(id);
-                    Message m = new Message(env, dest, params.get(0));
-                    dest.addMessage(m);
-                    if (idDest < mb.getGrimpeurs().size()) {
-                        mb.setGrimpeur(idDest, dest);
-                    } else {
-                        System.out.println("Il y a une erreur sur le destinataire");
+                if (params.size()==2){
+                    try {
+                        int idDest = Util.idfrompseudo(mb, params.get(0));
+                        Grimpeur dest = mb.getGrimpeurs().get(idDest);
+                        Grimpeur env = mb.getGrimpeurs().get(id);
+                        Message m = new Message(env, dest, params.get(1));
+                        dest.addMessage(m);
+                        System.out.println("----------");
+                        System.out.println("Message envoyé à " + dest.getPseudo() +" avec succes ");
+                    } catch (Error e) {
+                        e.printStackTrace();
                     }
                 } else {
+                    System.out.println("----------");
                     System.out.println("Mauvais nombre de parametres");
                 }
                 break;
@@ -183,7 +245,10 @@ public class Command {
                     Grimpeur g = mb.getGrimpeurs().get(id);
                     ami.toggleAmi(g);
                     g.toggleAmi(ami);
+                    System.out.println("----------");
+                    System.out.println("Amis ajoute avec succes");
                 } else {
+                    System.out.println("----------");
                     System.out.println("Mauvais nombre de parametres");
                 }
                 break;
@@ -196,8 +261,68 @@ public class Command {
                         System.out.println("----------");
                         System.out.println(g.toString());
                     }
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
                 }
                 break;
+            }
+            case "rvoie" : {
+                if (params.size()== 1) { 
+                    String s = params.get(0);
+                    List<Voie> result = Util.resVoie(mb, s);
+                    for (Voie v : result ) {
+                        System.out.println("----------");
+                        System.out.println(v.toString());
+                    }
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                }
+            }
+
+// Commandes administrateur
+            case "ag" : {
+                if (params.size() == 3 ) {
+                    String pseudo = params.get(0);
+                    int age = Integer.parseInt(params.get(1));
+                    int niveau = Integer.parseInt(params.get(2));
+                    Gestionnaire.addGrimpeur(pseudo, age, niveau, mb);
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                }
+                break;
+            }
+            case "dg" : {
+                if (params.size() == 1 ) {
+                    int idtoremove = Integer.parseInt(params.get(0));
+                    Gestionnaire.delGrimpeur(idtoremove, mb);
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                }
+                break;
+            }
+            case "av" :{
+                if (params.size()==3) {
+                    String nom = params.get(0);
+                    String secteur = params.get(1);
+                    int niveau = Integer.parseInt(params.get(2));
+                    Gestionnaire.addVoie(nom, secteur, niveau, mb);
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                } break;
+            }
+            case "dv" : {
+                if (params.size()==1) {
+                    int idtoremove = Integer.parseInt(params.get(0));
+                    Gestionnaire.delVoie(idtoremove, mb);
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                } break;
             }
             default : {
                 System.out.println("Commande invalide");

@@ -3,12 +3,14 @@ package principal;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//Obsolete et inutile
 public class Secteur {
     private String nom;
-    private List<Voie> voies; // Chaque secteur contient une liste de voies, oui c'est redondant on sait
+    //private List<Voie> voies; // Chaque secteur contient une liste de voies, oui c'est redondant on sait
 
     public Secteur(String nom)  {
         this.nom=nom;
-        this.voies = new ArrayList<Voie>();
+        //this.voies = new ArrayList<Voie>();
     }
 }

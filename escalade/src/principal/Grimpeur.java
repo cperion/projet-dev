@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class Grimpeur {
-    private int id;
+    protected int id;
     private String pseudo;
     private int age;
     private List<Voie> preferees;
@@ -68,19 +68,23 @@ public class Grimpeur {
     public List<Activite> getHist() {
         return hist;
     }
-
     /**
      * @return the amis
      */
     public List<Grimpeur> getAmis() {
         return amis;
     }
-
     /**
      * @param amis the amis to set
      */
     public void setAmis(List<Grimpeur> amis) {
         this.amis = amis;
+    }
+    /**
+     * @return the preferees
+     */
+    public List<Voie> getPreferees() {
+        return preferees;
     }
 
     public int getNiveau(){

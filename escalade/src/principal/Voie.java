@@ -9,20 +9,22 @@ public class Voie {
     private int id; //Identifiant unique qui permet de retrouver la voie dans la liste de voies du MainBoard
     private String nom;
     private int difficulte;
-    private List<Grimpe> hist;
+    private List<Grimpe> hist = new ArrayList<Grimpe>();
     private Horaire horaire;
     private String type;
     private boolean ouvert;
-    private Secteur secteur;
+    private String secteur;
     private int eval; // Compteur de difficulte
-    private List<String> coms;
+    private List<String> coms = new ArrayList<String>();
 
-    public Voie(int id, String nom, int niveau) {
+    public Voie(int id, String nom, String secteur, int niveau) {
+        this.secteur=secteur;
         this.id = id;
         this.nom= nom;
         this.difficulte = niveau;
     }
-    public void up(){ eval++; } // incremente le compteur de difficulte
+    
+	public void up(){ eval++; } // incremente le compteur de difficulte
     public void down(){eval--;} // decremente le compeur de difficulte
     public void addCom(String com, String pseudo) {
         String out="";
@@ -98,5 +100,16 @@ public class Voie {
     }
     public double scoreMoy(){
         return (double)eval/(double)hist.size();
+    }
+
+    @Override
+    public String toString() {
+        String out= "";
+        out += "id : " + Integer.toString(id) + "\n";
+        out += "nom : " + nom + "\n";
+        out += "difficulte : " + Integer.toString(difficulte) + "\n";
+        out += "secteur : " + secteur + "\n";
+        if (ouvert) { out += "ouverte"; } else { out += "fermee"; }
+        return out;
     }
 }

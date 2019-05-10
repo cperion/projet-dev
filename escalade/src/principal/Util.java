@@ -27,14 +27,16 @@ public class Util {
         List<Voie> voies=mb.getVoies();
         boolean found = false;
         int id=0;
-        while (!found) {
-            if (nom != voies.get(id).getNom()){
+        int n = voies.size();
+        while (!found && id<n ) {
+            if (!nom.equals(voies.get(id).getNom())){
             id++;
             } else {
+                found = true;
                 return id;
             }
         }
-        return voies.size(); // C'est qu'il y a eu une erreur
+        throw new Error("Voie introuvable"); // C'est qu'il y a eu une erreur
     }
     public static List<Grimpeur> resProfil(MainBoard mb, String s) { // Donne la liste des grimpeurs dont le pseudo contient la chaîne s
         List<Grimpeur> grimpeurs = mb.getGrimpeurs();
@@ -42,6 +44,16 @@ public class Util {
         for (Grimpeur g : grimpeurs) {
             if (g.getPseudo().contains(s)) {
                 result.add(g);
+            }
+        }
+        return result;
+    }
+    public static List<Voie> resVoie(MainBoard mb, String s) {
+        List<Voie> voies = mb.getVoies();
+        List<Voie> result = new ArrayList<Voie>();
+        for (Voie v : voies) {
+            if (v.getNom().contains(s)) {
+                result.add(v);
             }
         }
         return result;
