@@ -1,5 +1,7 @@
 #!/bin/sh
 
-javac src/principal/*.java;
-javac src/ui/cli/*.java;
+javac escalade/src/principal/*.java -d escalade/bin/principal ;
+javac escalade/src/ui/cli/*.java -d escalade/bin/ui/cli ;
+cd escalade/bin;
+java ui.cli.Mainloop;
 

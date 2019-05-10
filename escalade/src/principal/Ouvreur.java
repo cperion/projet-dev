@@ -7,14 +7,19 @@ public class Ouvreur extends Grimpeur {
     private List<Voie> ouvertes;
     private List<Voie> fermees;
 
-    public Ouvreur() {
-        super();
-    } 
-    public void ouvre(){
-
+    public Ouvreur(int id, String pseudo, int age,int niveau) {
+        super(niveau, pseudo, niveau, niveau);
     }
 
-    public void ferme() {
-        
+    static public void ouvre(int id, MainBoard mb){
+        Voie voie = mb.getVoies().get(id);
+        voie.setOuvert(true);
+        mb.setVoie(id, voie);
+    }
+
+    static public void ferme(int id, MainBoard mb) {
+        Voie voie = mb.getVoies().get(id);
+        voie.setOuvert(false);
+        mb.setVoie(id, voie);
     }
 }
