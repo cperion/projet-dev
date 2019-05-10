@@ -1,19 +1,19 @@
 package ui.cli;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import io.Io;
+import io.Test;
 import principal.Grimpeur;
 import principal.MainBoard;
 
@@ -23,68 +23,80 @@ public class Mainloop {
 
 	public static void startconsole(MainBoard mb, int id) {
 		System.out.println("Bienvenue dans la console. Tapez help pour avoir la liste des commandes disponibles");
-		Scanner scan = new Scanner(System.in);
+		
 		boolean exit=false;
 		while (!exit) {
-			System.out.println(mb.getGrimpeurs().get(id).toString()+ " : ");
+			System.out.println();
+			System.out.print(mb.getGrimpeurs().get(id).getPseudo()+ " : " + Integer.toString(id)+ " : "); // Le prompt
+			Scanner scan = new Scanner(System.in);
 			String line= scan.nextLine();
 			Command command = new Command(line);
 			command.exec(mb, id);
+			if (exit) {
+				scan.close();
+			}
 		}
+		
 	}
 	public static  void startadminconsole(MainBoard mb) {
-		
+		int id=0;
+		System.out.println("Bienvenue dans la console administrateur. Tapez help pour avoir la liste des commandes disponibles");
+		boolean exit=false;
+		while (!exit) {
+			System.out.println();
+			System.out.print(mb.getGrimpeurs().get(id).getPseudo()+ " : " + Integer.toString(id)+ " : "); // Le prompt
+			Scanner scan = new Scanner(System.in);
+			String line= scan.nextLine();
+			Command command = new Command(line);
+			command.exec(mb, id);
+			if (exit) {
+				scan.close();
+			}
+		}
 	}
 
 	public static void start(MainBoard mb, int id) {
 		if (id == 0) {
 			System.out.println("God mode");
-			startadminconsole(mb);
+			startconsole(mb, 0);
 		} else startconsole(mb, id);
 
 	}
 
 	public static void login(MainBoard mb) {
 		byte[] hash = "".getBytes();
+		byte[] hash2 = "".getBytes();
 		int id=0;
 		boolean go = false;
-		do {
 			System.out.println("Entrez votre id");
 			Scanner scan = new Scanner(System.in);
-			scan.reset();
-			System.out.println(scan.hasNext());
 			id = scan.nextInt();
-			//scan.close();
-			//Scanner scan = new Scanner(System.in);
+			System.out.println("Entrez votre mot de passe");
+			scan.nextLine();
 			String mdp = scan.nextLine();
+			System.out.println(mdp);
 			try { MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
 				hash = mdigest.digest(mdp.getBytes());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Voulez vous continuer ? Y/N");
-			String s=scan.nextLine();
-			go = s=="Y" || s=="y" ;
-		} while (mb.getHashlist().get(id) != hash || !go );
-		start(mb, id);
+			System.out.println(hash);
+			hash2=mb.getHashlist().get(id);
+			boolean pass = Arrays.equals(hash, hash2);
+			scan.close();
+		
+		if (pass) {start(mb, id);}
 		
 	}
 	public static void mbload(String fname) {
-		try { 
-			FileInputStream fis = new FileInputStream(fname);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			Object mbo = (MainBoard) ois.readObject();
-			MainBoard mb = (MainBoard) mbo;
-			login(mb);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		MainBoard mb = Io.loadMainBoard(fname);
+
 	}
 	public static void mbselect() {
 		System.out.println("Entrez le nom du fichier de sauvegarde à charger :");
 		Scanner scan = new Scanner(System.in);
 		String fname = new String();
-		fname = scan.next();
+		fname = scan.nextLine();
 		scan.close();
 		if (!fname.endsWith(".mb")) {
 			fname += ".mb";
@@ -99,11 +111,14 @@ public class Mainloop {
 		String pseudo = scan.nextLine();
 		System.out.println("Entrez votre age :");
 		int age = scan.nextInt();
-		Grimpeur g = new Grimpeur(0, pseudo, age);
+		System.out.println("Entrez votre niveau :");
+		int niveau = scan.nextInt();
+		Grimpeur g = new Grimpeur(0, pseudo, age, niveau );
 		mb.addGrimpeur(g);
 		System.out.println("Entrez le nom de la sauvegarde");
 		scan.reset();
 		String fname = scan.nextLine();
+		scan.close();
 		Io.saveMainBoard(fname, mb);
 	}
 	public static void main(String[] args) {
@@ -121,9 +136,6 @@ public class Mainloop {
 			
 		}
 		
-		if (saveFolder.list().length == 0) {
-			createmb();
-		}
 		mbselect();
 	
 

@@ -3,19 +3,37 @@ package principal;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
 import java.io.Serializable;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainBoard implements Serializable{ // Le MainBoard est represente la physiqualite de la salle de sport
-    private List<Activite> activites;
-    private List<Voie> voies;
-    private List<Grimpeur> grimpeurs; // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
-    private List<Secteur> secteurs; // Redondant mais pratique
-    private List<byte[]> hashlist;
+public class MainBoard implements Serializable{// Le MainBoard est represente aussi la physiqualite de la salle de sport
+    private static final long serialVersionUID = 2L;
+    private List<Activite> activites = new ArrayList<Activite>();
+    private List<Voie> voies = new ArrayList<Voie>();
+    private List<Grimpeur> grimpeurs = new ArrayList<Grimpeur>(); // Le premier element de cette liste est le gestionnaire. C'est une liste non vide...
+    private List<Secteur> secteurs = new ArrayList<Secteur>(); // Redondant mais pratique
+    private List<byte[]> hashlist = new ArrayList<byte[]>(); // stock les digest SHA 256 des mots de passe des utilisateurs
+    public String hi = "hi"; // Variable bien élevée.
+
+//    private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("hi", String.class)};
+
+
 
     public MainBoard() {
-        grimpeurs= new ArrayList<Grimpeur>();
+        Grimpeur g = new Grimpeur(0, "admin", 999, 100);
+        String mdp = "passwd";
+        byte[] hash = "".getBytes();
+        try { MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
+			hash = mdigest.digest(mdp.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        this.grimpeurs= new ArrayList<Grimpeur>();
+        this.grimpeurs.add(g);
+        this.hashlist.add(hash);
     }
     /**
      * @return the voies

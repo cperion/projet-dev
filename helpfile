@@ -1,0 +1,14 @@
+Ceci est l'aide.
+Le premier mot est le nom de la commande et les mots qui suivent sont les arguments/options de cette commande.
+
+help : affiche l'aide
+
+annonce date message : Passer une annonce
+voie nom : afficher les infos sur une voie
+profil nom : afficher les infos sur un utilisateur
+evenenments : afficher les evenements recents
+essayee voie date reussie evaluation: enregistrer une voie comme essayée
+preferee nom enregistrer une voie comme preferee
+evenement date duree lieu message : Passer une annonce d'evenement
+msg pseudo message : Envoyer un message à un utilisateur
+amis pseudo : ajouter / supprimer un utilisateur à sa liste d'amis

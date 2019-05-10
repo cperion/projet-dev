@@ -2,6 +2,7 @@ package ui.cli;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import principal.Activite;
@@ -16,7 +17,7 @@ import principal.Voie;
 
 public class Command {
     String command;
-    List<String> params;
+    List<String> params= new ArrayList<String>();
     public Command(String line) {
         String[] splitted = line.split(" ");
         this.command=splitted[0];
@@ -45,18 +46,45 @@ public class Command {
                 } else {
                     System.out.println("Trop d'arguments !");
                 }
+                break;
             }
             case "annonce": {
                 if (params.size() == 2){
                     String date = params.get(0);
-                    String message = params.get(1);
-                    Grimpeur auteur = mb.getGrimpeurs().get(id);
-                    Annonce a = new Annonce(date, auteur, message);
-                    mb.addAnonce(a);
+                    if (Util.okDate(date)) {
+                        String message = params.get(1);
+                        Grimpeur auteur = mb.getGrimpeurs().get(id);
+                        Annonce a = new Annonce(date, auteur, message);
+                        mb.addAnonce(a);
+                        System.out.println("----------");
+                        System.out.println("L'annonce a bien ete ajoutee au MainBoard");
+                        System.out.println("----------");
+                        System.out.println(mb.getActivites().get(mb.getActivites().size()-1).toString());
+                        System.out.println("----------");
+                    }
                 } else {
                     System.out.println("Mauvais nombre d'arguments pour annonce");
                 }
-
+                break;
+            
+            }
+            case "annonces" : {
+                if (params.size()==0) {
+                    List<Activite> activites = mb.getActivites();
+                    List<Annonce> annonces = new ArrayList<Annonce>();
+                    for (Activite a : activites ) {
+                        if ( a instanceof Annonce) {
+                            Annonce an = (Annonce) a; // On cast l'activite a en annonce an
+                            annonces.add(an);
+                        }
+                    }
+                    for (Annonce a : annonces) {
+                        System.out.println("----------");
+                        System.out.println(a.toString());
+                        System.out.println("----------");
+                    }
+                }
+                break;
             }
             case "voie": {
                 if (params.size() == 1) {
@@ -65,21 +93,31 @@ public class Command {
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
             }
             case "profil": {
                 if (params.size() == 1) {
-                    int idGrimpeur = Util.idfrompseudo(mb, params.get(0));
-                    System.out.println(mb.getGrimpeurs().get(idGrimpeur).toString());
+                    try {
+                        int idGrimpeur = Util.idfrompseudo(mb, params.get(0));
+                        System.out.println("----------");
+                        System.out.println(mb.getGrimpeurs().get(idGrimpeur).toString());
+                        System.out.println("----------");
+                    } catch (Error e) {
+                        e.printStackTrace();
+                    }
+                    
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
             }
             case "evenements": {
-                if (params.size() == 1) {
+                if (params.size() == 0) {
                     Fonctions.evenements(mb);   
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
             }
             case "essayee": {
                 if (params.size() == 4) {
@@ -92,6 +130,7 @@ public class Command {
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
             }
             case "preferee": {
                 if (params.size()==1) { 
@@ -103,6 +142,7 @@ public class Command {
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
             }
             case "evenement": {
                 if (params.size()==4) {
@@ -116,6 +156,7 @@ public class Command {
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
             }
             case "msg": {
                 if (params.size()==1){
@@ -132,6 +173,7 @@ public class Command {
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
                 
             }
             case "amis": {
@@ -144,6 +186,21 @@ public class Command {
                 } else {
                     System.out.println("Mauvais nombre de parametres");
                 }
+                break;
+            }
+            case "rprofil"  : {
+                if (params.size()== 1) {
+                    String s = params.get(0);
+                    List<Grimpeur> result = Util.resProfil(mb, s);
+                    for (Grimpeur g : result ) {
+                        System.out.println("----------");
+                        System.out.println(g.toString());
+                    }
+                }
+                break;
+            }
+            default : {
+                System.out.println("Commande invalide");
             }
         }
         return out;

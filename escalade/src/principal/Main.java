@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 
 public class Main {
     public static void main(String[] args) {
-<<<<<<< HEAD
         MainBoard mb = new MainBoard();
 
         try { 
@@ -21,9 +20,5 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-=======
-        double a;
-        System.out.println("Hello World");
->>>>>>> bd95591d36adabb0f9e9854ffd3f1233ff786c83
     }
 }

@@ -6,6 +6,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Test",
+            "console": "integratedTerminal",
+            "request": "launch",
+            "mainClass": "io.Test",
+            "projectName": "projet-dev"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Mainloop",
             "console": "integratedTerminal",
             "request": "launch",

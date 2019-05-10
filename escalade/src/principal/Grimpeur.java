@@ -15,6 +15,9 @@ public class Grimpeur {
     private List<Activite> hist;
     private Inbox inbox;
     private List<Grimpeur> amis;
+    private String signature = "";
+
+    public Grimpeur(){}
 
     public Grimpeur(int id, String pseudo, int age,int niveau)  {
         this.id = id;
@@ -91,8 +94,11 @@ public class Grimpeur {
     @Override
     public String toString() {
         String out="";
+        out += "id: " + Integer.toString(id) + "\n";
         out += "pseudo: " + pseudo + "\n";
-        out += "age: " + Integer.toString(age) + "\n"; // Eventuellement a completer
+        out += "age: " + Integer.toString(age) + "\n" ;
+        out += "niveau: " + Integer.toString(niveau) + "\n";
+        out += "signature: " + signature; // Eventuellement a completer
         return out;
     }
     public int nbEchecs(){
