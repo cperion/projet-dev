@@ -11,12 +11,15 @@ public class Ouvreur extends Grimpeur {
         super(niveau, pseudo, niveau, niveau);
     }
 
-    public void ouvre(int id, String nom, String secteur, int niveau, MainBoard mb){
-        Voie nouvelleVoie = new Voie(id,nom, secteur, niveau);
-        mb.addVoie(nouvelleVoie);
+    static public void ouvre(int id, MainBoard mb){
+        Voie voie = mb.getVoies().get(id);
+        voie.setOuvert(true);
+        mb.setVoie(id, voie);
     }
 
-    public void ferme() {
-        
+    static public void ferme(int id, MainBoard mb) {
+        Voie voie = mb.getVoies().get(id);
+        voie.setOuvert(false);
+        mb.setVoie(id, voie);
     }
 }

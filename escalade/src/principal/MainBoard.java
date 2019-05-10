@@ -64,6 +64,8 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
     }
     public void delGrimpeur(int id) {
         grimpeurs.remove(id);
+        int n = grimpeurs.size();
+        if (id+1<n) { List<Grimpeur> down = grimpeurs.subList(id+1, n); } //il faut changer l'id des grimpeurs après celui qui a été supprimé !
     }
 
     
@@ -95,5 +97,18 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
     
 	public void setGrimpeur(int id, Grimpeur g) {
         grimpeurs.set(id, g);
-	}
+    }
+
+    public void setVoie(int id, Voie v) {
+        voies.set(id, v);
+    }
+    
+    public void setHash(int id, byte[] hash) {
+        if ( id == hashlist.size()) {
+            hashlist.add(hash);
+        }
+        if ( id < hashlist.size()) {
+            hashlist.set(id, hash);
+        }
+    }
 }

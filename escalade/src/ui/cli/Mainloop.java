@@ -12,6 +12,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
+
 import io.Io;
 import io.Test;
 import principal.Grimpeur;
@@ -23,37 +25,37 @@ public class Mainloop {
 
 	public static void startconsole(MainBoard mb, int id) {
 		System.out.println("Bienvenue dans la console. Tapez help pour avoir la liste des commandes disponibles");
-		
+		Scanner scan = new Scanner(System.in);
 		boolean exit=false;
 		while (!exit) {
 			System.out.println();
 			System.out.print(mb.getGrimpeurs().get(id).getPseudo()+ " : " + Integer.toString(id)+ " : "); // Le prompt
-			Scanner scan = new Scanner(System.in);
 			String line= scan.nextLine();
 			Command command = new Command(line);
 			command.exec(mb, id);
 			if (exit) {
 				scan.close();
+				return ;
 			}
 		}
 		
 	}
-	public static  void startadminconsole(MainBoard mb) {
-		int id=0;
-		System.out.println("Bienvenue dans la console administrateur. Tapez help pour avoir la liste des commandes disponibles");
-		boolean exit=false;
-		while (!exit) {
-			System.out.println();
-			System.out.print(mb.getGrimpeurs().get(id).getPseudo()+ " : " + Integer.toString(id)+ " : "); // Le prompt
-			Scanner scan = new Scanner(System.in);
-			String line= scan.nextLine();
-			Command command = new Command(line);
-			command.exec(mb, id);
-			if (exit) {
-				scan.close();
-			}
-		}
-	}
+	// public static  void startadminconsole(MainBoard mb) {
+	// 	int id=0;
+	// 	System.out.println("Bienvenue dans la console administrateur. Tapez help pour avoir la liste des commandes disponibles");
+	// 	boolean exit=false;
+	// 	while (!exit) {
+	// 		System.out.println();
+	// 		System.out.print(mb.getGrimpeurs().get(id).getPseudo()+ " : " + Integer.toString(id)+ " : "); // Le prompt
+	// 		Scanner scan = new Scanner(System.in);
+	// 		String line= scan.nextLine();
+	// 		Command command = new Command(line);
+	// 		command.exec(mb, id);
+	// 		if (exit) {
+	// 			scan.close();
+	// 		}
+	// 	}
+	// }
 
 	public static void start(MainBoard mb, int id) {
 		if (id == 0) {
@@ -67,23 +69,23 @@ public class Mainloop {
 		byte[] hash = "".getBytes();
 		byte[] hash2 = "".getBytes();
 		int id=0;
+		String pseudo = "";
 		boolean go = false;
-			System.out.println("Entrez votre id");
-			Scanner scan = new Scanner(System.in);
-			id = scan.nextInt();
-			System.out.println("Entrez votre mot de passe");
-			scan.nextLine();
-			String mdp = scan.nextLine();
-			System.out.println(mdp);
-			try { MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
-				hash = mdigest.digest(mdp.getBytes());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println(hash);
-			hash2=mb.getHashlist().get(id);
-			boolean pass = Arrays.equals(hash, hash2);
-			scan.close();
+		System.out.println("Entrez votre pseudo");
+		Scanner scan = new Scanner(System.in);
+		pseudo = scan.nextLine();
+		try {id = principal.Util.idfrompseudo(mb, pseudo);}
+		catch (Error e) { e.printStackTrace(); }
+		System.out.println("Entrez votre mot de passe");
+		String mdp = scan.nextLine();
+		try { MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
+			hash = mdigest.digest(mdp.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		hash2=mb.getHashlist().get(id);
+		boolean pass = Arrays.equals(hash, hash2);
+			
 		
 		if (pass) {start(mb, id);}
 		
@@ -93,15 +95,22 @@ public class Mainloop {
 
 	}
 	public static void mbselect() {
-		System.out.println("Entrez le nom du fichier de sauvegarde à charger :");
-		Scanner scan = new Scanner(System.in);
-		String fname = new String();
-		fname = scan.nextLine();
-		scan.close();
-		if (!fname.endsWith(".mb")) {
-			fname += ".mb";
-		}
-		mbload(fname);
+		// System.out.println("Entrez le nom du fichier de sauvegarde à charger :");
+		// Scanner scan = new Scanner(System.in);
+		// String fname = new String();
+		// fname = scan.nextLine();
+		// scan.nextLine();
+		// scan.close();
+		// if (!fname.endsWith(".mb")) {
+		// 	fname += ".mb";
+		// }
+		// if (fname.contains("egg")) {
+		// 	String[] args = new String[0];
+		// 	io.Test.main(args);
+		// }
+		// mbload(fname);
+		String[] args = new String[0];
+		io.Test.main(args);           // Mode test
 	}
 
 	public static void createmb() {

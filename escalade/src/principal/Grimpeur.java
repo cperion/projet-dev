@@ -42,9 +42,11 @@ public class Grimpeur {
         voies.set(voie.getId(), voie);// on remplace la voie originale par la voie modifiee
         mb.setVoies(voies); // Et on remplace la liste des voies originale par la liste modifiee
     }
-    public void addPreferee(Voie voie) { // Ajoute un voie preferee
+    public void togglePreferee(Voie voie) { // Ajoute ou retire un voie preferee
         if (!preferees.contains(voie)) { // Il faut au prealable verfier si la voie n'est pas deja dans la liste des preferees
             preferees.add(voie);
+        } else {
+            preferees.remove(voie);
         }
         preferees.add(voie);
     }

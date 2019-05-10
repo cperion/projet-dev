@@ -11,9 +11,11 @@ import principal.Activite;
 import principal.Annonce;
 import principal.Evenement;
 import principal.Gestionnaire;
+import principal.Grimpe;
 import principal.Grimpeur;
 import principal.MainBoard;
 import principal.Message;
+import principal.Ouvreur;
 import principal.Util;
 import principal.Voie;
 
@@ -33,6 +35,8 @@ public class Command {
     }
     public int exec(MainBoard mb, int id) {
         //Gestionnaire admin = (Gestionnaire) mb.getGrimpeurs().get(0); //On instencie un administrateur pour plus tard
+        Grimpeur g = mb.getGrimpeurs().get(id);
+        boolean ouvreur = g instanceof Ouvreur; // Si le grimpeur est un ouvreur il pourra executer certaines commandes
         int out = 0;
         switch (command) {
             case "help":{
@@ -153,7 +157,7 @@ public class Command {
                         if (params.get(2) == "Y") { reussie = true; }
                         int eval = Integer.parseInt(params.get(3));
                         String com = params.get(4);
-                        Grimpeur g = mb.getGrimpeurs().get(id);
+                        //Grimpeur g = mb.getGrimpeurs().get(id);
                         Voie voie = mb.getVoies().get(idVoie);
                         g.addEssayee(mb, voie, date, reussie, eval, com);
                         mb.setGrimpeur(id, g);
@@ -174,8 +178,8 @@ public class Command {
                     try {
                         int idVoie = Util.idfromnom(mb, params.get(0));
                         Voie voie = mb.getVoies().get(idVoie);
-                        Grimpeur g = mb.getGrimpeurs().get(id);   
-                        g.addPreferee(voie);
+                        //Grimpeur g = mb.getGrimpeurs().get(id);   
+                        g.togglePreferee(voie);
                         mb.setGrimpeur(id, g);
                         System.out.println("----------");
                         System.out.println("Voie preferee ajoutee avec succes");
@@ -190,7 +194,7 @@ public class Command {
             }
             case "preferees": {
                 if (params.size()==0) {
-                    Grimpeur g = mb.getGrimpeurs().get(id);
+                    //Grimpeur g = mb.getGrimpeurs().get(id);
                     List<Voie> preferees = g.getPreferees();
                     for ( Voie v : preferees) {
                         System.out.println("----------");
@@ -238,11 +242,11 @@ public class Command {
                 break;
                 
             }
-            case "amis": {
+            case "ami": {
                 if (params.size()== 1) {
                     int idami = Util.idfrompseudo(mb, params.get(0));
                     Grimpeur ami = mb.getGrimpeurs().get(idami); // Le grimpeur dont on veut ajouter l'ami
-                    Grimpeur g = mb.getGrimpeurs().get(id);
+                    //Grimpeur g = mb.getGrimpeurs().get(id);
                     ami.toggleAmi(g);
                     g.toggleAmi(ami);
                     System.out.println("----------");
@@ -253,13 +257,25 @@ public class Command {
                 }
                 break;
             }
+            case "amis": {
+                if (params.size()== 0) {
+                    List<Grimpeur> amis = g.getAmis();
+                    for (Grimpeur gr : amis) {
+                        System.out.println(gr.toString());
+                    }
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                }
+                break;
+            }
             case "rprofil"  : {
                 if (params.size()== 1) {
                     String s = params.get(0);
                     List<Grimpeur> result = Util.resProfil(mb, s);
-                    for (Grimpeur g : result ) {
+                    for (Grimpeur gr : result ) {
                         System.out.println("----------");
-                        System.out.println(g.toString());
+                        System.out.println(gr.toString());
                     }
                 } else {
                     System.out.println("----------");
@@ -283,46 +299,101 @@ public class Command {
 
 // Commandes administrateur
             case "ag" : {
-                if (params.size() == 3 ) {
-                    String pseudo = params.get(0);
-                    int age = Integer.parseInt(params.get(1));
-                    int niveau = Integer.parseInt(params.get(2));
-                    Gestionnaire.addGrimpeur(pseudo, age, niveau, mb);
+                if (id==0) {
+                    if (params.size() == 3 ) {
+                        String pseudo = params.get(0);
+                        int age = Integer.parseInt(params.get(1));
+                        int niveau = Integer.parseInt(params.get(2));
+                        Gestionnaire.addGrimpeur(pseudo, age, niveau, mb);
+                        System.out.println("----------");
+                        System.out.println("Succes");
+                    } else {
+                        System.out.println("----------");
+                        System.out.println("Mauvais nombre de parametres");
+                    }
+                    
                 } else {
-                    System.out.println("----------");
-                    System.out.println("Mauvais nombre de parametres");
-                }
-                break;
+                    System.out.println("PERMISSION DENIED !");
+                } break;
             }
             case "dg" : {
-                if (params.size() == 1 ) {
-                    int idtoremove = Integer.parseInt(params.get(0));
-                    Gestionnaire.delGrimpeur(idtoremove, mb);
+                if (id==0) {
+                    if (params.size() == 1 ) {
+                        int idtoremove = Integer.parseInt(params.get(0));
+                        Gestionnaire.delGrimpeur(idtoremove, mb);
+                        System.out.println("----------");
+                        System.out.println("Succes");
+                    } else {
+                        System.out.println("----------");
+                        System.out.println("Mauvais nombre de parametres");
+                    }
                 } else {
-                    System.out.println("----------");
-                    System.out.println("Mauvais nombre de parametres");
+                    System.out.println("PERMISSION DENIED !");
                 }
                 break;
             }
-            case "av" :{
-                if (params.size()==3) {
-                    String nom = params.get(0);
-                    String secteur = params.get(1);
-                    int niveau = Integer.parseInt(params.get(2));
-                    Gestionnaire.addVoie(nom, secteur, niveau, mb);
+            case "av" : {
+                if (id==0) {
+                    if (params.size()==3) {
+                        String nom = params.get(0);
+                        String secteur = params.get(1);
+                        int niveau = Integer.parseInt(params.get(2));
+                        Gestionnaire.addVoie(nom, secteur, niveau, mb);
+                        System.out.println("----------");
+                        System.out.println("Succes");
+                    } else {
+                        System.out.println("----------");
+                        System.out.println("Mauvais nombre de parametres");
+                    } 
                 } else {
-                    System.out.println("----------");
-                    System.out.println("Mauvais nombre de parametres");
+                    System.out.println("PERMISSION DENIED !");
                 } break;
             }
             case "dv" : {
-                if (params.size()==1) {
-                    int idtoremove = Integer.parseInt(params.get(0));
-                    Gestionnaire.delVoie(idtoremove, mb);
+                if (id==0) {
+                    if (params.size()==1) {
+                        int idtoremove = Integer.parseInt(params.get(0));
+                        Gestionnaire.delVoie(idtoremove, mb);
+                        System.out.println("----------");
+                        System.out.println("Succes");
+                    } else {
+                        System.out.println("----------");
+                        System.out.println("Mauvais nombre de parametres");
+                    } 
                 } else {
-                    System.out.println("----------");
-                    System.out.println("Mauvais nombre de parametres");
+                    System.out.println("PERMISSION DENIED !");
                 } break;
+            }
+            case "ov" : {
+                if (ouvreur) {
+                    if (params.size()==1) {
+                        int idVoie = Integer.parseInt(params.get(0));
+                        Ouvreur.ouvre(idVoie, mb);
+                        System.out.println("----------");
+                        System.out.println("Succes");
+                    } else {
+                        System.out.println("----------");
+                        System.out.println("Mauvais nombre de parametres");
+                    } 
+                } else {
+                    System.out.println("PERMISSION DENIED !");
+                } break;
+            }
+            case "fv" : {
+                if (ouvreur) {
+                    if (params.size()==1) {
+                        int idVoie = Integer.parseInt(params.get(0));
+                        Ouvreur.ferme(idVoie, mb);
+                        System.out.println("----------");
+                        System.out.println("Succes");
+                    } else {
+                        System.out.println("----------");
+                        System.out.println("Mauvais nombre de parametres");
+                    } 
+                } else {
+                    System.out.println("PERMISSION DENIED !");
+                } 
+                break;
             }
             default : {
                 System.out.println("Commande invalide");

@@ -16,10 +16,14 @@ public class Test {
         Gestionnaire.addGrimpeur("marsu", 12, 15, mb);
         Gestionnaire.addGrimpeur("sonic", 7, 25, mb);
         Gestionnaire.addGrimpeur("jul", 2, 1, mb);
+        Gestionnaire.setPass(1, "one", mb);
+        Gestionnaire.setPass(2, "two", mb);
+        Gestionnaire.setPass(3, "three", mb);
+        Gestionnaire.setPass(4, "four", mb);
         //Io.saveMainBoard(fname, mb);
         //MainBoard mb2 = Io.loadMainBoard(fname);
         //System.out.println(mb2.hi);
-        Mainloop.startconsole(mb, 0);
+        Mainloop.login(mb);
     }
        
 }

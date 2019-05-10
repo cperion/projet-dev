@@ -1,6 +1,8 @@
 package principal;
 
-public class Gestionnaire extends Grimpeur{
+import java.security.MessageDigest;
+
+public class Gestionnaire extends Grimpeur {
     public Gestionnaire() {
         super();
         this.id=0;
@@ -29,5 +31,14 @@ public class Gestionnaire extends Grimpeur{
     }
     static public void delVoie(int id, MainBoard mb) {
         mb.delVoie(id);
+    }
+    static public void setPass(int id, String mdp, MainBoard mb) {
+        byte[] hash = "".getBytes();
+        try { MessageDigest mdigest = MessageDigest.getInstance("SHA-256");
+				hash = mdigest.digest(mdp.getBytes());
+		} catch (Exception e) {
+				e.printStackTrace();
+        }
+        mb.setHash(id, hash);
     }
 }
