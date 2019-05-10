@@ -7,6 +7,7 @@ import ui.cli.*;
 public class Test {
     public static void main(String[] args) {
         //String fname = "test.mb";
+        System.out.println("Ceci est une version de test");
         MainBoard mb = new MainBoard();
         Gestionnaire.addVoie("Bleu", "X", 12, mb);
         Gestionnaire.addVoie("Rouge", "Y", 1, mb);

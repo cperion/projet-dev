@@ -48,7 +48,6 @@ public class Grimpeur {
         } else {
             preferees.remove(voie);
         }
-        preferees.add(voie);
     }
     public void addMessage(Message m) {
         inbox.addMessage(m);
@@ -157,6 +156,9 @@ public class Grimpeur {
                 Voie v = g.getVoie();
                 listeDiff.add(v.getDifficulte());
             }
+        }
+        if (listeDiff.size()==0) {
+            return 0;
         }
         return Collections.max(listeDiff);
     }

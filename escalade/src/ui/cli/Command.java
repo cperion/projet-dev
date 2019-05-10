@@ -97,6 +97,7 @@ public class Command {
             case "voie": {
                 if (params.size() == 1) {
                     int idVoie = Util.idfromnom(mb, params.get(0));
+                    System.out.println("----------");
                     System.out.println(mb.getVoies().get(idVoie).toString());
                 } else {
                     System.out.println("Mauvais nombre de parametres");
@@ -154,7 +155,7 @@ public class Command {
                         int idVoie = Util.idfromnom(mb, params.get(0));
                         String date = params.get(1);
                         boolean reussie = false;
-                        if (params.get(2) == "Y") { reussie = true; }
+                        if (params.get(2).equals("Y")) { reussie = true; }
                         int eval = Integer.parseInt(params.get(3));
                         String com = params.get(4);
                         //Grimpeur g = mb.getGrimpeurs().get(id);
@@ -296,6 +297,52 @@ public class Command {
                     System.out.println("Mauvais nombre de parametres");
                 }
             }
+            case "stats" : {
+                if (params.size()==0) {
+                    System.out.println("----------");
+                    System.out.println(g.toString());
+                    System.out.println("----------");
+                    String str="";
+                    str += "Nombre de grimpes: " + Integer.toString(g.nbEssais()) + "\n";
+                    str += "Nombre de grimpes reussies: " + Integer.toString(g.nbSucces()) + "\n";
+                    str += "Derniere voie grimpee: " + g.derniereGrimpe().getNom() + "\n";
+                    str += "Niveau grimpe le plus dur: " + Integer.toString(g.plusDureGrimpe()) + "\n";
+                    System.out.println(str);
+                }
+                else if (params.size()==1) {
+                    Grimpeur gr = mb.getGrimpeurs().get(Integer.parseInt(params.get(0)));
+                    System.out.println("----------");
+                    System.out.println(gr.toString());
+                    System.out.println("----------");
+                    String str="";
+                    str += "Nombre de grimpes: " + Integer.toString(gr.nbEssais()) + "\n";
+                    str += "Nombre de grimpes reussies: " + Integer.toString(gr.nbSucces()) + "\n";
+                    str += "Derniere voie grimpee: " + gr.derniereGrimpe().getNom() + "\n";
+                    str += "Niveau grimpe le plus dur: " + Integer.toString(gr.plusDureGrimpe()) + "\n";
+                    System.out.println(str);
+                } else {
+                    System.out.println("----------");
+                    System.out.println("Mauvais nombre de parametres");
+                } break;
+            }
+            case "statsv" : {
+                if (params.size()==1) {
+                    int idVoie = Util.idfromnom(mb, params.get(0));
+                    Voie v = mb.getVoies().get(idVoie);
+                    System.out.println("----------");
+                    System.out.println(v.toString());
+                    System.out.println("----------");
+                    String str="";
+                    str += "Nombre de grimpes: " + Integer.toString(v.nbGrimpes()) + "\n";
+                    str += "Taux de reussite: " + Double.toString(v.tauxReussite()) + "\n";
+                    str += "score: " + Integer.toString(v.score()) + "\n";
+                    str += "score moyen " + Double.toString(v.scoreMoy()) + "\n";
+                    System.out.println(str);
+                } else {
+                    System.out.println("Mauvais nombre d'arguments");
+                } break;
+            }
+
 
 // Commandes administrateur
             case "ag" : {

@@ -64,15 +64,8 @@ public class Voie {
         return this.difficulte;
     }
 
-    public int nbGrimpeur(){
-        ArrayList<Grimpeur> listeGrimpeur = new ArrayList<Grimpeur>();
-        for(Grimpe g:hist){
-            listeGrimpeur.add(g.getGrimpeur());
-            }
-        HashSet distinctGrimpeur = new HashSet();
-        distinctGrimpeur.addAll(listeGrimpeur);
-        ArrayList<Grimpeur> nbGrimpeur = new ArrayList<Grimpeur>();
-        return nbGrimpeur.size();
+    public int nbGrimpes(){
+        return hist.size();
     }
 
     public Grimpeur dernierGrimpeur(){
