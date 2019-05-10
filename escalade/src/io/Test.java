@@ -3,7 +3,11 @@ package io;
 import principal.*;
 import io.Io;
 import ui.cli.*;
-
+/**
+ * 
+ * @author Cédric Perion
+ *
+ */
 public class Test {
     public static void main(String[] args) {
         //String fname = "test.mb";
