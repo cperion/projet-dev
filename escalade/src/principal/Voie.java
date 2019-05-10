@@ -48,6 +48,12 @@ public class Voie {
         return id;
     }
     /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    /**
      * @return the nom
      */
     public String getNom() {
@@ -93,6 +99,10 @@ public class Voie {
     }
     public double scoreMoy(){
         return (double)eval/(double)hist.size();
+    }
+
+    public void iddown(){
+        id = id - 1;
     }
 
     @Override

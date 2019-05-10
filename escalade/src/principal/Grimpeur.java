@@ -96,6 +96,19 @@ public class Grimpeur {
         this.niveau = niveau;
     }
 
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         String out="";
@@ -161,5 +174,8 @@ public class Grimpeur {
             return 0;
         }
         return Collections.max(listeDiff);
+    }
+    public void iddown(){
+        id--;
     }
 }

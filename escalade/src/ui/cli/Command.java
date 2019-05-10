@@ -366,10 +366,14 @@ public class Command {
             case "dg" : {
                 if (id==0) {
                     if (params.size() == 1 ) {
-                        int idtoremove = Integer.parseInt(params.get(0));
-                        Gestionnaire.delGrimpeur(idtoremove, mb);
-                        System.out.println("----------");
-                        System.out.println("Succes");
+                        try {
+                            int idtoremove = Util.idfromnom(mb, params.get(0));
+                            Gestionnaire.delGrimpeur(idtoremove, mb);
+                            System.out.println("----------");
+                            System.out.println("Succes"); 
+                        } catch (Error e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("----------");
                         System.out.println("Mauvais nombre de parametres");
@@ -399,10 +403,14 @@ public class Command {
             case "dv" : {
                 if (id==0) {
                     if (params.size()==1) {
-                        int idtoremove = Integer.parseInt(params.get(0));
-                        Gestionnaire.delVoie(idtoremove, mb);
-                        System.out.println("----------");
-                        System.out.println("Succes");
+                        try{
+                            int idtoremove = Util.idfromnom(mb, params.get(0));
+                            Gestionnaire.delVoie(idtoremove, mb);
+                            System.out.println("----------");
+                            System.out.println("Succes");
+                        } catch (Error e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("----------");
                         System.out.println("Mauvais nombre de parametres");
@@ -441,6 +449,9 @@ public class Command {
                     System.out.println("PERMISSION DENIED !");
                 } 
                 break;
+            }
+            case "clean" : {
+                System.out.println("On fait un peu de nettoyage...");
             }
             default : {
                 System.out.println("Commande invalide");

@@ -65,7 +65,13 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
     public void delGrimpeur(int id) {
         grimpeurs.remove(id);
         int n = grimpeurs.size();
-        if (id+1<n) { List<Grimpeur> down = grimpeurs.subList(id+1, n); } //il faut changer l'id des grimpeurs après celui qui a été supprimé !
+        // if (id+1<n) { 
+        //     List<Grimpeur> down = grimpeurs.subList(id+1, n);
+        //     for (Grimpeur g : down) {
+        //         g.iddown();
+        //         setGrimpeur(g.getId(), g); //il faut changer l'id des grimpeurs après celui qui a été supprimé !
+        //     }
+        // } 
     }
 
     
@@ -74,6 +80,14 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
     }
     public void delVoie(int id) {
         voies.remove(id);
+        // int n = voies.size();
+        // if (id+1<n) { 
+        //     List<Voie> down = voies.subList(id+1, n);
+        //     for (Voie v: voies){
+        //         v.iddown();
+        //         setVoie(v.getId(), v); //il faut changer l'id des voies après celles qui a été supprimée !
+        //     }
+        // }
     }
     public void addAnonce(Annonce a) {
         activites.add(a);
@@ -94,7 +108,15 @@ public class MainBoard implements Serializable{// Le MainBoard est represente au
         return activites;
     }
 
-    
+    public void clean(){
+        for (Grimpeur g: grimpeurs) {
+            g.setId(grimpeurs.indexOf(g));
+        }
+        for (Voie v: voies) {
+            v.setId(voies.indexOf(v));
+        }
+    }
+
 	public void setGrimpeur(int id, Grimpeur g) {
         grimpeurs.set(id, g);
     }
