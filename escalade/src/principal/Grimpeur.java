@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
+/**
+ * 
+ * @author Lucas Dassin
+ *
+ */
 public class Grimpeur {
     protected int id;
     private String pseudo;
@@ -18,7 +22,13 @@ public class Grimpeur {
     private String signature = "";
 
     public Grimpeur(){}
-
+    /**
+     * 
+     * @param id 	 Identifiant du grimpeur
+     * @param pseudo Pseudonyme du grimpeur
+     * @param age	 Age du grimpeur
+     * @param niveau Niveau du grimpeur
+     */
     public Grimpeur(int id, String pseudo, int age,int niveau)  {
         this.id = id;
         this.pseudo = pseudo;
@@ -30,7 +40,15 @@ public class Grimpeur {
         this.inbox= new Inbox();
         this.amis= new ArrayList<Grimpeur>();
     }
-
+    /**
+     * 
+     * @param mb	  Salle où grimpe le grimpeur
+     * @param voie	  Voie sur laquelle grimpe le grimpeur
+     * @param date	  Date à laquelle le grimpeur grimpe la voie
+     * @param reussie true s'il la réusit, false sinon
+     * @param eval	  +1, 0 ou -1
+     * @param com	  Commentaire laissé par le grimpeur sur la voie
+     */
     public void addEssayee(MainBoard mb, Voie voie, String date, boolean reussie, int eval, String com)  {
         Grimpe g = new Grimpe(this, voie, date, reussie);
         hist.add(g); // On ajoute la grimpe à l'historique
@@ -42,6 +60,10 @@ public class Grimpeur {
         voies.set(voie.getId(), voie);// on remplace la voie originale par la voie modifiee
         mb.setVoies(voies); // Et on remplace la liste des voies originale par la liste modifiee
     }
+        /**
+     * 
+     * @param voie Voie à ajouter à la liste des voies préférées
+     */
     public void togglePreferee(Voie voie) { // Ajoute ou retire un voie preferee
         if (!preferees.contains(voie)) { // Il faut au prealable verfier si la voie n'est pas deja dans la liste des preferees
             preferees.add(voie);
@@ -49,9 +71,17 @@ public class Grimpeur {
             preferees.remove(voie);
         }
     }
+        /**
+     * 
+     * @param m Message de notification envoyé au grimpeur
+     */
     public void addMessage(Message m) {
         inbox.addMessage(m);
     }
+        /**
+     * 
+     * @param g	Grimpeur à ajouter à la liste d'amis
+     */
     public void toggleAmi(Grimpeur g) {
         if (!amis.contains(g)) {
             amis.add(g);
@@ -96,7 +126,23 @@ public class Grimpeur {
         this.niveau = niveau;
     }
 
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
+        /**
+     * @return Identifiant et pseudonyme du grimpeur
+     */
     public String toString() {
         String out="";
         out += "id: " + Integer.toString(id) + "\n";
@@ -106,6 +152,10 @@ public class Grimpeur {
         out += "signature: " + signature; // Eventuellement a completer
         return out;
     }
+        /**
+     * 
+     * @return Nombre d'essais échoués sur la voie
+     */
     public int nbEchecs(){
         int k=0;
         for (Activite e:hist){
@@ -118,7 +168,10 @@ public class Grimpeur {
         }
         return k;
     }
-
+    /**
+     * 
+     * @return Nombre d'essais réussis sur la voie
+     */
     public int nbSucces(){
         int k=0;
         for (Activite e:hist){
@@ -131,11 +184,17 @@ public class Grimpeur {
         }
         return k;
     }
-
+    /**
+     * 
+     * @return Nombre d'essais sur la voie
+     */
     public int nbEssais(){
         return nbSucces() + nbEchecs();
     }
-
+    /**
+     * 
+     * @return Dernière voie grimpée
+     */
     public Voie derniereGrimpe(){
         Collections.reverse(hist);
         for (Activite e:hist){
@@ -147,7 +206,11 @@ public class Grimpeur {
         System.out.println("Vous ne grimpez jamais !");
         return null;
     }
-
+    /**
+     * 
+     * @return Niveau de difficulté le plus dur réalisé par le grimpeur
+     */
+    public
     public Integer plusDureGrimpe() {
         List<Integer> listeDiff = new ArrayList<Integer>();
         for (Activite e:hist){
@@ -161,5 +224,8 @@ public class Grimpeur {
             return 0;
         }
         return Collections.max(listeDiff);
+    }
+    public void iddown(){
+        id--;
     }
 }

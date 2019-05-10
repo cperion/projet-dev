@@ -1,9 +1,20 @@
 package principal;
-
+/**
+*
+* @author Cédric Perion
+*
+*/
 public class Evenement extends Activite{
     private String duree;
     private String lieu;
     //private String msg;
+        /**
+     * 
+     * @param date	Date de l'événèment
+     * @param duree	Durée de l'événèment
+     * @param lieu	Lieu de l'événèment
+     * @param msg	Message
+     */
     public Evenement(String date, String duree, String lieu, String msg ) {
         super();
         this.date = date;

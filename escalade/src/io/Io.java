@@ -7,8 +7,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import principal.MainBoard;
-
-public class Io { //SAuvegearde la salle avec tout ce qu'elle contient
+/**
+ * 
+ * @author Cédric Perion
+ *
+ */
+public class Io { //Sauvegearde la salle avec tout ce qu'elle contient
+	/**
+	 * 
+	 * @param fname Nom du fichier où l'on sauvegarde les informations sur la salle
+	 * @param mb    Salle d'escalade
+	 */
     public static void saveMainBoard(String fname, MainBoard mb) {
         try {
             if (!fname.endsWith(".mb")) {
@@ -23,7 +32,11 @@ public class Io { //SAuvegearde la salle avec tout ce qu'elle contient
             e.printStackTrace();
         }
     }
-
+    /**
+     * 
+     * @param fname	Nom du fichier à charger
+     * @return		Salle d'escalade concerné par le fichier
+     */
     public static MainBoard loadMainBoard(String fname) {
         try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fname));

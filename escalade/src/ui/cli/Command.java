@@ -19,10 +19,18 @@ import principal.Ouvreur;
 import principal.Util;
 import principal.Voie;
 
-
+/**
+ * 
+ * @author Cédric Perion
+ *
+ */
 public class Command {
     String command;
     List<String> params= new ArrayList<String>();
+     /**
+     * 
+     * @param line Chaine de caractère contenant des mots-clés relatfis aux instructions
+     */
     public Command(String line) {
         String[] splitted = line.split(" ");
         this.command=splitted[0];
@@ -33,6 +41,12 @@ public class Command {
             k++;
         }
     }
+        /**
+     * 
+     * @param mb Salle d'escalade
+     * @param id Identifiant relatif au cas souhaité par l'utilisateur
+     * @return   Message d'information en fonction du cas rentré
+     */
     public int exec(MainBoard mb, int id) {
         //Gestionnaire admin = (Gestionnaire) mb.getGrimpeurs().get(0); //On instencie un administrateur pour plus tard
         Grimpeur g = mb.getGrimpeurs().get(id);
@@ -366,10 +380,14 @@ public class Command {
             case "dg" : {
                 if (id==0) {
                     if (params.size() == 1 ) {
-                        int idtoremove = Integer.parseInt(params.get(0));
-                        Gestionnaire.delGrimpeur(idtoremove, mb);
-                        System.out.println("----------");
-                        System.out.println("Succes");
+                        try {
+                            int idtoremove = Util.idfromnom(mb, params.get(0));
+                            Gestionnaire.delGrimpeur(idtoremove, mb);
+                            System.out.println("----------");
+                            System.out.println("Succes"); 
+                        } catch (Error e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("----------");
                         System.out.println("Mauvais nombre de parametres");
@@ -399,10 +417,14 @@ public class Command {
             case "dv" : {
                 if (id==0) {
                     if (params.size()==1) {
-                        int idtoremove = Integer.parseInt(params.get(0));
-                        Gestionnaire.delVoie(idtoremove, mb);
-                        System.out.println("----------");
-                        System.out.println("Succes");
+                        try{
+                            int idtoremove = Util.idfromnom(mb, params.get(0));
+                            Gestionnaire.delVoie(idtoremove, mb);
+                            System.out.println("----------");
+                            System.out.println("Succes");
+                        } catch (Error e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         System.out.println("----------");
                         System.out.println("Mauvais nombre de parametres");
@@ -441,6 +463,9 @@ public class Command {
                     System.out.println("PERMISSION DENIED !");
                 } 
                 break;
+            }
+            case "clean" : {
+                System.out.println("On fait un peu de nettoyage...");
             }
             default : {
                 System.out.println("Commande invalide");
