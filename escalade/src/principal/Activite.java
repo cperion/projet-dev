@@ -1,5 +1,9 @@
 package principal;
-
+/**
+ * 
+ * @author Cédric Perion
+ * @see Annonce, Evenement, Grimpe
+ */
 public abstract class Activite {
     protected String date;
     protected String msg;
