@@ -18,11 +18,19 @@ import io.Io;
 import io.Test;
 import principal.Grimpeur;
 import principal.MainBoard;
-
+/**
+ * 
+ * @author Cédric Perion
+ *
+ */
 public class Mainloop {
 
 	String help = "";
-
+	/**
+	 * 
+	 * @param mb Salle d'escalade
+	 * @param id Identifiant de la commande
+	 */
 	public static void startconsole(MainBoard mb, int id) {
 		System.out.println("Bienvenue dans la console. Tapez help pour avoir la liste des commandes disponibles");
 		Scanner scan = new Scanner(System.in);
@@ -56,7 +64,11 @@ public class Mainloop {
 	// 		}
 	// 	}
 	// }
-
+	/**
+	 * 
+	 * @param mb Salle d'escalade
+	 * @param id Identifiant de la commande
+	 */
 	public static void start(MainBoard mb, int id) {
 		if (id == 0) {
 			System.out.println("God mode");
@@ -64,7 +76,10 @@ public class Mainloop {
 		} else startconsole(mb, id);
 
 	}
-
+		/**
+	 * 
+	 * @param mb Salle d'escalade
+	 */
 	public static void login(MainBoard mb) {
 		byte[] hash = "".getBytes();
 		byte[] hash2 = "".getBytes();
@@ -90,6 +105,10 @@ public class Mainloop {
 		if (pass) {start(mb, id);}
 		
 	}
+		/**
+	 * 
+	 * @param fname Fichier de la salle à charger
+	 */
 	public static void mbload(String fname) {
 		MainBoard mb = Io.loadMainBoard(fname);
 
